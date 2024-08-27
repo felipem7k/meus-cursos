@@ -1,0 +1,3 @@
+[submodule "alura/alura/git-e-github/numero-secreto"]
+	path = alura/alura/git-e-github/numero-secreto
+	url = https://github.com/felipem7k/numero-secreto.git
