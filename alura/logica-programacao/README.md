@@ -29,12 +29,12 @@ A melhor maneira de aprender é colocando a mão na massa! Neste módulo, você 
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/felipem7k/meus-cursos.git
    ```
 
 2. Navegue até o módulo desejado:
    ```bash
-   cd logica-programacao/modulo-1
+   cd alura/logica-programacao/modulo-1
    ```
 
 3. Explore os conteúdos e coloque seus conhecimentos em prática!
