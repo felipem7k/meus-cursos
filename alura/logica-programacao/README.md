@@ -55,3 +55,7 @@ Caso tenha dúvidas ou sugestões, sinta-se à vontade para entrar em contato:
 ---
 
 Aproveite o aprendizado e bons estudos!
+<<<<<<< HEAD
+=======
+```
+>>>>>>> 8817db404f0cd9dc0250eb8f76b47aaf03673079
