@@ -20,6 +20,8 @@ function adicionar() {
         return;
     }
 
+    nome = nome.toUpperCase();
+
     if (listaDeNomes.includes(nome)) {
         alert('Esta pessoa já foi adicionada na lista.');
         return;
@@ -31,7 +33,6 @@ function adicionar() {
 }
 
 function embaralha(lista) {
-
     for (let indice = lista.length; indice; indice--) {
 
         const indiceAleatorio = Math.floor(Math.random() * indice);
@@ -42,6 +43,11 @@ function embaralha(lista) {
 }
 
 function sortear() {
+    if (listaDeNomes.length < 4) {
+        alert('Adicione pelo menos 4 amigos.');
+        return;
+    }
+
     let texto = '';
     embaralha(listaDeNomes)
 
