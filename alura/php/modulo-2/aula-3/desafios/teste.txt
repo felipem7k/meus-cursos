@@ -1,0 +1,2 @@
+Leia apenas esta linha!
+Não leia esta.
