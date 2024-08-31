@@ -28,12 +28,12 @@ Neste módulo, aprofundei meus conhecimentos e aprendi a estruturar o código de
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/felipem7k/curso-php.git
+   git clone https://github.com/felipem7k/meus-cursos.git
    ```
 
 2. Navegue até o módulo desejado:
    ```bash
-   cd curso-php/modulo-1
+   cd php/modulo-1
    ```
 
 3. Revise os conteúdos e aplique as técnicas no seu próprio aprendizado.
