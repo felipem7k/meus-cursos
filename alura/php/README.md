@@ -33,6 +33,15 @@ Este módulo é dedicado ao estudo da Programação Orientada a Objetos (POO) em
 - **Aplicando herança de classes:** Como usar herança para reutilizar e estender funcionalidades em seu código.
 - **Polimorfismo na POO:** Conhecendo o conceito de polimorfismo e como aplicá-lo na orientação a objetos.
 
+### Módulo 4: Recursos Avançados de PHP
+Neste módulo, explorei conceitos avançados que tornam o código mais robusto e flexível.
+
+- **Classes e métodos abstratos:** Aprenda sobre a criação de classes e métodos abstratos para criar estruturas flexíveis.
+- **Interfaces em PHP:** Descubra como definir contratos no código utilizando interfaces.
+- **Reutilização de código com Traits:** Saiba como usar Traits para compartilhar código entre diferentes classes.
+- **Namespaces e autoload:** Organize sua aplicação utilizando namespaces e autoload para carregar classes automaticamente.
+- **Tratamento de erros e exceções:** Lide com erros e exceções de forma eficaz utilizando os recursos do PHP.
+
 ## 🚀 Como Usar
 
 1. Clone o repositório:
