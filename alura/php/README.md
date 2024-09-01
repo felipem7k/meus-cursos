@@ -1,6 +1,6 @@
 # Cursos de PHP
 
-Este repositório contém o material dos cursos de PHP que eu estudei. Aqui, você vai encontrar anotações, exemplos e exercícios que usei para consolidar meu aprendizado em PHP.
+Este repositório contém o material dos cursos de PHP que estudei. Aqui, você vai encontrar anotações, exemplos e exercícios que usei para consolidar meu aprendizado.
 
 ## 📚 Módulos
 
@@ -23,6 +23,15 @@ Neste módulo, aprofundei meus conhecimentos e aprendi a estruturar o código de
 - **Debugging no PHP:** Interpretação e correção de erros.
 - **Processamento de formulários web:** Processamento de formulários HTML com PHP.
 - **Estrutura de pastas:** Organização do projeto em pastas para manter o código claro e lógico.
+
+### Módulo 3: Programação Orientada a Objetos
+Este módulo é dedicado ao estudo da Programação Orientada a Objetos (POO) em PHP.
+
+- **Conheça a Programação Orientada a Objetos:** Introdução ao paradigma de programação orientada a objetos.
+- **Encapsulamento na POO:** Entendendo como funciona o encapsulamento na orientação a objetos.
+- **Trabalhando com classes e objetos:** Como escrever classes, instanciar objetos, chamar métodos, e muito mais.
+- **Aplicando herança de classes:** Como usar herança para reutilizar e estender funcionalidades em seu código.
+- **Polimorfismo na POO:** Conhecendo o conceito de polimorfismo e como aplicá-lo na orientação a objetos.
 
 ## 🚀 Como Usar
 
