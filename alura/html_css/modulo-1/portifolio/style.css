@@ -1,4 +1,8 @@
 body {
-    background-color: black;
-    color: white;
+    background-color: #000F08;
+    color: #F6F6F6;
+}
+
+span {
+    color: #136F63;
 }
