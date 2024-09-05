@@ -26,8 +26,8 @@ body {
 }
 
 .apresentacao img {
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 300px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -45,4 +45,22 @@ body {
     font-size: 24px;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
+}
+
+.apresentacao__conteudo__links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.apresentacao__conteudo__links__link {
+    background-color: #136F63;
+    width: 280px;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 16px;
+    padding: 21.5px 0;
+    text-decoration: none;
+    color: #000F08;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
 }
