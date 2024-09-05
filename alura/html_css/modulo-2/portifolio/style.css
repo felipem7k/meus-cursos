@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #000F08;
+    color: #F6F6F6;
+}
+
+.titulo-destaque {
+    color: #136F63;
+}
