@@ -42,6 +42,15 @@ Neste módulo, explorei conceitos avançados que tornam o código mais robusto e
 - **Namespaces e autoload:** Organize sua aplicação utilizando namespaces e autoload para carregar classes automaticamente.
 - **Tratamento de erros e exceções:** Lide com erros e exceções de forma eficaz utilizando os recursos do PHP.
 
+### Módulo 5: Recursos Adicionais e Automatização
+Neste módulo, explorei tópicos adicionais que complementam e potencializam o uso do PHP.
+
+- **Gerenciamento de dependências:** Como gerenciar e integrar bibliotecas e pacotes externos.
+- **Autoload de classes e funções:** Implementação do autoload para carregar classes e funções automaticamente.
+- **Integração com ferramentas como PHPUnit:** Uso de PHPUnit para testes automatizados e controle de qualidade.
+- **Automatização de tarefas com scripts:** Criação de scripts para automatizar tarefas rotineiras no desenvolvimento.
+- **Publicação e versionamento de pacotes:** Como publicar e versionar pacotes de código para distribuição.
+
 ## 🚀 Como Usar
 
 1. Clone o repositório:
