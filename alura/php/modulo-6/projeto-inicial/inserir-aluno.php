@@ -9,7 +9,7 @@ $pdo = ConnectionCreator::createConnection();
 
 $student = new Student(
     null,
-    "Dom Pedro",
+    "DHAHA AHHAHA",
     new \DateTimeImmutable('1997-10-23')
 );
 

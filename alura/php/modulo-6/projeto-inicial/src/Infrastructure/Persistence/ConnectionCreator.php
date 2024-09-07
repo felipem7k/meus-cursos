@@ -8,9 +8,7 @@ class ConnectionCreator
 {
     public static function createConnection(): PDO
     {
-        $databasePath = __DIR__ . '/../../../banco.sqlite';
-
-        $connection = new PDO('sqlite:' . $databasePath);
+        $connection = new PDO('mysql:host=localhost;dbname=php-pdo', 'root', '');
 
         return $connection;
     }
