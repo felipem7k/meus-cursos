@@ -1,0 +1,16 @@
+{
+    "name": "felipem7k/php-pdo",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Felipem7k\\PhpPdo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Felipe",
+            "email": "felipems3004@gmail.com"
+        }
+    ],
+    "require": {}
+}
