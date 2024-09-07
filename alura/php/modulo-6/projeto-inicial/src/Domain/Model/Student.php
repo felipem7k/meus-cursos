@@ -4,8 +4,16 @@ namespace Felipem7k\PhpPdo\Domain\Model;
 
 class Student
 {
-    public function __construct(public readonly ?int $id, public readonly string $name, public readonly \DateTimeInterface $birthDate)
+    private ?int $id;
+
+    public function __construct(?int $id, public readonly string $name, public readonly \DateTimeInterface $birthDate)
     {
+        $this->id = $id;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function defineId(int $id): void

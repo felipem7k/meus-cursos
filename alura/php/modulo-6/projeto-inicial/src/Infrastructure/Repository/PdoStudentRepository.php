@@ -51,7 +51,7 @@ class PdoStudentRepository implements StudentRepository
 
     public function save(Student $student): bool
     {
-        if ($student->id === null) {
+        if ($student->getId() === null) {
             return $this->insert($student);
         }
 
@@ -83,14 +83,14 @@ class PdoStudentRepository implements StudentRepository
         return $stmt->execute([
             ':name' => $student->name,
             ':birth_date' => $student->birthDate->format('Y-m-d'),
-            ':id' => $student->id
+            ':id' => $student->getId()
         ]);
     }
 
     public function remove(Student $student): bool
     {
         $stmt = $this->connection->prepare('DELETE FROM students WHERE id = ?;');
-        $stmt->bindValue(1, $student->id, PDO::PARAM_INT);
+        $stmt->bindValue(1, $student->getId(), PDO::PARAM_INT);
 
         return $stmt->execute();
     }
