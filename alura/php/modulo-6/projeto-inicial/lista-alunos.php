@@ -1,11 +1,11 @@
 <?php
 
 use Felipem7k\PhpPdo\Domain\Model\Student;
+use Felipem7k\PhpPdo\Infrastructure\Persistence\ConnectionCreator;
 
 require_once 'vendor/autoload.php';
 
-$caminhoBanco = __DIR__ . '/banco.sqlite';
-$pdo = new PDO('sqlite:' . $caminhoBanco);
+$pdo = ConnectionCreator::createConnection();
 
 $statement = $pdo->query('SELECT * FROM students');
 

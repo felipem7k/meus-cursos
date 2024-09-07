@@ -1,9 +1,10 @@
 <?php
 
+use Felipem7k\PhpPdo\Infrastructure\Persistence\ConnectionCreator;
+
 require_once 'vendor/autoload.php';
 
-$caminhoBanco = __DIR__ . '/banco.sqlite';
-$pdo = new PDO('sqlite:' . $caminhoBanco);
+$pdo = ConnectionCreator::createConnection();
 
 $preparedStatement = $pdo->prepare('DELETE FROM students WHERE id = ?;');
 $preparedStatement->bindValue(1, 3, PDO::PARAM_INT);
