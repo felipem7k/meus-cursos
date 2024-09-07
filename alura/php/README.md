@@ -51,6 +51,16 @@ Neste módulo, explorei tópicos adicionais que complementam e potencializam o u
 - **Automatização de tarefas com scripts:** Criação de scripts para automatizar tarefas rotineiras no desenvolvimento.
 - **Publicação e versionamento de pacotes:** Como publicar e versionar pacotes de código para distribuição.
 
+### Módulo 6: Trabalhando com Bancos de Dados e PDO
+Este módulo foca na utilização da classe PDO para trabalhar com bancos de dados relacionais em PHP.
+
+- **Aprenda sobre a classe PDO do PHP:** Introdução à classe PDO, uma interface para acessar bancos de dados em PHP.
+- **Veja as vantagens em utilizar o PDO para se comunicar com qualquer banco relacional:** Descubra como o PDO facilita a comunicação com diferentes bancos de dados relacionais.
+- **Melhore a segurança da sua aplicação PHP:** Aprenda a utilizar o PDO para prevenir injeções SQL e melhorar a segurança do seu código.
+- **Organize o seu código com boas práticas:** Veja como organizar seu código ao trabalhar com bancos de dados, aplicando boas práticas de desenvolvimento.
+- **Descubra como tratar erros no PHP e no PDO:** Entenda como lidar com erros ao trabalhar com PDO, garantindo que sua aplicação funcione de maneira estável.
+- **Veja como é fácil trabalhar com um banco de dados relacional com PHP orientado a objetos e o PDO:** Explore como a combinação de PHP orientado a objetos e PDO torna o trabalho com bancos de dados mais eficiente e organizado.
+
 ## 🚀 Como Usar
 
 1. Clone o repositório:
