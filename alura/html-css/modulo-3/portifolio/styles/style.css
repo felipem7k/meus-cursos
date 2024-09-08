@@ -125,3 +125,10 @@ body {
         font-size: 24px;
     }
 }
+
+@media only screen and (width < 1385px) {
+    .apresentacao {
+        flex-direction: column-reverse;
+        gap: 20px;
+    }
+}
