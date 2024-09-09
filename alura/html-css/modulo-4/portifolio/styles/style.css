@@ -48,15 +48,14 @@ body {
         align-items: center;
         justify-content: space-between;
     
-        & img {
-            height: 350px;
-            width: 350px;
+        & .apresentacao__imagem {
+            width: 30%;
             object-fit: cover;
             border-radius: 50%;
         }
     
         & .apresentacao__conteudo {
-            width: 615px;
+            width: 50%;
             display: flex;
             flex-direction: column;
             gap: 40px;
@@ -127,8 +126,20 @@ body {
 }
 
 @media only screen and (width < 1385px) {
-    .apresentacao {
-        flex-direction: column-reverse;
-        gap: 20px;
+    body {
+        & .apresentacao {
+            flex-direction: column-reverse;
+            gap: 20px;
+    
+            & .apresentacao__imagem {
+                width: 50%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+
+            & .apresentacao__conteudo {
+                width: 90%;
+            }
+        }
     }
 }
