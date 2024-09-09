@@ -47,7 +47,8 @@ body {
         display: flex;
         align-items: center;
         justify-content: space-between;
-    
+        gap: 82px;
+
         & .apresentacao__imagem {
             width: 30%;
             object-fit: cover;
@@ -125,11 +126,20 @@ body {
     }
 }
 
-@media only screen and (width < 1385px) {
+@media only screen and (width < 1000px) {
     body {
+        & .cabecalho {
+            padding: 10%;
+
+            & .cabecalho__menu {
+                justify-content: center;
+            }
+        }
+
         & .apresentacao {
             flex-direction: column-reverse;
             gap: 20px;
+            padding: 5%;
     
             & .apresentacao__imagem {
                 width: 50%;
@@ -138,7 +148,7 @@ body {
             }
 
             & .apresentacao__conteudo {
-                width: 90%;
+                width: auto;
             }
         }
     }
