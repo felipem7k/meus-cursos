@@ -56,7 +56,6 @@ class ProdutoRepositorio
     public function salvar(Produto $produto): void
     {
         $sql = "INSERT INTO produtos (tipo, nome, descricao, preco, imagem) VALUES (:tipo, :nome, :descricao, :preco, :imagem);";
-        var_dump($produto);
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue("tipo", $produto->getTipo());
         $stmt->bindValue("nome", $produto->getNome());
@@ -64,5 +63,44 @@ class ProdutoRepositorio
         $stmt->bindValue("preco", $produto->getPreco());
         $stmt->bindValue("imagem", $produto->getImagem());
         $stmt->execute();
+    }
+
+    private function atualizarFoto(Produto $produto)
+    {
+        $sql = "UPDATE produtos SET imagem = ? WHERE id = ?";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue(1, $produto->getImagem());
+        $statement->bindValue(2, $produto->getId());
+        $statement->execute();
+    }
+
+    public function editar(Produto $produto): void
+    {
+        $sql = "UPDATE produtos 
+                SET tipo = :tipo, nome = :nome, descricao = :descricao, preco = :preco, imagem = :imagem 
+                WHERE id = :id;";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue("id", $produto->getId());
+        $stmt->bindValue("tipo", $produto->getTipo());
+        $stmt->bindValue("nome", $produto->getNome());
+        $stmt->bindValue("descricao", $produto->getDescricao());
+        $stmt->bindValue("preco", $produto->getPreco());
+        $stmt->execute();
+
+        if($produto->getImagem() !== 'logo-serenatto.png'){
+            $this->atualizarFoto($produto);
+        }
+    }
+
+    public function buscar(int $id)
+    {
+        $sql = "SELECT * FROM produtos WHERE id = ?";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue(1, $id);
+        $statement->execute();
+
+        $dados = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $this->formatarObjeto($dados);
     }
 }

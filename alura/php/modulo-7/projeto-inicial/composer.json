@@ -1,0 +1,19 @@
+{
+    "name": "felipem7k/serenatto",
+    "description": "Projeto da cafeteria serenatto com a alura",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Felipem7k\\Serenatto\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Felipe",
+            "email": "felipems3004@gmail.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^3.0"
+    }
+}
