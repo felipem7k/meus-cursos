@@ -61,6 +61,15 @@ Este módulo foca na utilização da classe PDO para trabalhar com bancos de dad
 - **Descubra como tratar erros no PHP e no PDO:** Entenda como lidar com erros ao trabalhar com PDO, garantindo que sua aplicação funcione de maneira estável.
 - **Veja como é fácil trabalhar com um banco de dados relacional com PHP orientado a objetos e o PDO:** Explore como a combinação de PHP orientado a objetos e PDO torna o trabalho com bancos de dados mais eficiente e organizado.
 
+### Módulo 7: PHP na Web e Aplicações Dinâmicas
+Este módulo se concentra na criação de aplicativos dinâmicos para a web utilizando PHP.
+
+- **Aprenda a usar o PHP na web:** Descubra como utilizar PHP para desenvolver aplicativos web dinâmicos e interativos.
+- **Crie aplicativos dinâmicos usando PHP e MySQL para realizar operações de CRUD (Create, Read, Update, Delete) no front-end:** Veja como integrar PHP e MySQL para construir aplicações que permitem operações de CRUD diretamente no front-end.
+- **Gere HTML dinamicamente com PHP para exibir e manipular dados em aplicativos web:** Aprenda a gerar e manipular HTML dinamicamente utilizando PHP, permitindo interações ricas nos seus aplicativos web.
+- **Organize seus projetos com a orientação a objetos em PHP:** Aplique os conceitos de orientação a objetos para estruturar melhor seus projetos PHP.
+- **Aprenda a usar uma biblioteca externa para gerar PDF de um conteúdo dinâmico em HTML:** Veja como integrar bibliotecas externas para gerar PDFs a partir de conteúdos dinâmicos criados em HTML com PHP.
+
 ## 🚀 Como Usar
 
 1. Clone o repositório:
