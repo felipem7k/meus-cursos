@@ -4,6 +4,7 @@
     --branco-principal: #FFFFFF;
     --cinza-secundario: #C0C0C0;
     --botao-azul: #167BF7;
+    --botao-azul-efeito: #a2c3ec;
     --cor-de-fundo: #00030C;
 
     --fonte-principal: "Inter", sans-serif;
@@ -61,6 +62,10 @@ body {
         margin-bottom: 1em;
     }
 
+    & .container__botao:hover {
+        background-color: var(--botao-azul-efeito);
+    }
+
     & .botao_secundario {
         background-color: transparent;
         border: 2px solid var(--branco-principal);
@@ -99,4 +104,49 @@ body {
     }
 }
 
+.dispositivos {
+    text-align: center;
 
+    & .dispositivos__titulo {
+        font-size: 48px;
+    }
+
+    & .dispositivos__lista {
+        display: flex;
+        justify-content: center;
+        list-style-type: none;
+        margin: 5em 0;
+
+        & .lista__item {
+            font-size: 32px;
+        }
+    }
+}
+
+.rodape {
+    text-align: center;
+    margin: 5em 3em;
+
+    & .rodape__lista {
+        display: flex;
+        justify-content: center;
+        list-style-type: none;
+        margin-top: 1em;
+
+        & .lista__link a{
+            text-decoration: none;
+            color: var(--branco-principal);
+            margin-left: 1em;
+        }
+
+        & .lista__link a:hover {
+            color: var(--botao-azul);
+        }
+    }
+
+    & .rodape__texto {
+        margin: 1em 0;
+        color: var(--cinza-secundario);
+        font-size: 14px;
+    }
+}
