@@ -9,7 +9,7 @@ $stmt->bindValue(1, $id);
 
 
 if ($stmt->execute() == false) {
-    header("Location: /index.php?sucesso=0");
+    header("Location: /?sucesso=0");
 } else {
-    header("Location: /index.php?sucesso=1");
+    header("Location: /?sucesso=1");
 }
