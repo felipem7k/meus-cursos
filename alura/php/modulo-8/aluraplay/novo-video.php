@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use Felipem7k\Aluraplay\Entity\Video;
+use Felipem7k\Aluraplay\Repository\VideoRepository;
 
 $dbPath = __DIR__ ."/banco.sqlite";
 $pdo = new PDO("sqlite:$dbPath");
@@ -14,12 +17,9 @@ if (empty($titulo)) {
     exit();
 }
 
-$sql = "INSERT INTO videos (url, title) VALUES (?, ?)";
-$stmt = $pdo->prepare($sql);
-$stmt->bindValue(1, $url);
-$stmt->bindValue(2, $titulo);
+$repository = new VideoRepository($pdo);
 
-if ($stmt->execute() == false) {
+if ($repository->add(new Video($url, $titulo)) == false) {
     header("Location: /?sucesso=0");
     exit();
 }

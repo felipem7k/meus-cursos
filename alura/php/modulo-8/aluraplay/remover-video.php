@@ -1,15 +1,17 @@
 <?php 
 
+use Felipem7k\Aluraplay\Repository\VideoRepository;
+
 $dbPath = __DIR__ ."/banco.sqlite";
 $pdo = new PDO("sqlite:$dbPath");
 
 $id = $_GET["id"];
-$stmt = $pdo->prepare("DELETE FROM videos WHERE id = ?;");
-$stmt->bindValue(1, $id);
 
+$repository = new VideoRepository($pdo);
 
-if ($stmt->execute() == false) {
+if ($repository->remove($id) == false) {
     header("Location: /?sucesso=0");
-} else {
-    header("Location: /?sucesso=1");
+    exit();
 }
+
+header("Location: /?sucesso=1");

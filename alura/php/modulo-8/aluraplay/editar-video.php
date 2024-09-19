@@ -1,5 +1,8 @@
 <?php 
 
+use Felipem7k\Aluraplay\Entity\Video;
+use Felipem7k\Aluraplay\Repository\VideoRepository;
+
 $dbPath = __DIR__ ."/banco.sqlite";
 $pdo = new PDO("sqlite:$dbPath");
 
@@ -19,16 +22,14 @@ if (empty($titulo)) {
     exit();
 }
 
-$sql = "UPDATE videos SET
-        url = :url, title = :titulo
-        WHERE id = :id;";
-$stmt = $pdo->prepare(query: $sql);
-$stmt->bindValue("url", $url);
-$stmt->bindValue("titulo", $titulo);
-$stmt->bindValue("id", $id);
+$repository = new VideoRepository($pdo);
 
-if ($stmt->execute() == false) {
+$video = new Video($url, $titulo);
+$video->setId($id);
+
+if ($repository->update($video) == false) {
     header("Location: /?sucesso=0");
-} else {
-    header("Location: /?sucesso=1");
+    exit();
 }
+
+header("Location: /?sucesso=1");
