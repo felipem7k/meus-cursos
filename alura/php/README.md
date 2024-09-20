@@ -70,6 +70,15 @@ Este módulo se concentra na criação de aplicativos dinâmicos para a web util
 - **Organize seus projetos com a orientação a objetos em PHP:** Aplique os conceitos de orientação a objetos para estruturar melhor seus projetos PHP.
 - **Aprenda a usar uma biblioteca externa para gerar PDF de um conteúdo dinâmico em HTML:** Veja como integrar bibliotecas externas para gerar PDFs a partir de conteúdos dinâmicos criados em HTML com PHP.
 
+### Módulo 8: Validação de Dados e Padrão MVC
+Neste módulo, o foco está em como organizar seu código e trabalhar com dados na web.
+
+- **Aprenda a usar o PHP na web:** Veja como utilizar PHP para criar aplicações web robustas e dinâmicas.
+- **Saiba como gerar HTML usando PHP:** Aprenda a gerar HTML dinamicamente a partir do PHP para criar páginas interativas e dinâmicas.
+- **Filtre e valide dados de formulários com PHP:** Descubra como filtrar e validar dados enviados por formulários para garantir a segurança e integridade da aplicação.
+- **Aprenda a usar a orientação a objetos para organizar um projeto:** Aplique a orientação a objetos para estruturar projetos PHP de forma organizada e eficiente.
+- **Entenda o padrão Model-View-Controller (MVC):** Compreenda como o padrão MVC separa a lógica de negócios, a apresentação e a manipulação de dados, facilitando a manutenção e a escalabilidade das aplicações PHP.
+
 ## 🚀 Como Usar
 
 1. Clone o repositório:
