@@ -2,11 +2,9 @@
 
 namespace Felipem7k\Aluraplay\Controller;
 
-use Felipem7k\Aluraplay\Repository\VideoRepository;
-
 class Error404Controller implements Controller
 {
-    public function __construct(private VideoRepository $videoRepository)
+    public function __construct()
     {
     }
     public function processaRequisicao(): void

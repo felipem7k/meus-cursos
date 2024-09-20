@@ -2,14 +2,7 @@
 
 declare(strict_types= 1);
 
-use Felipem7k\Aluraplay\Controller\{
-    Error404Controller,
-    VideoCreateController,
-    VideoEditController,
-    VideoFormController,
-    VideoListController,
-    VideoRemoveController
-};
+use Felipem7k\Aluraplay\Controller\Error404Controller;
 
 use Felipem7k\Aluraplay\Repository\VideoRepository;
 
@@ -19,23 +12,17 @@ $dbPath = __DIR__ ."/../banco.sqlite";
 $pdo = new \PDO("sqlite:$dbPath");
 $videoRepository = new VideoRepository($pdo);
 
-if (!array_key_exists("PATH_INFO", $_SERVER) || $_SERVER["PATH_INFO"] === '/') {
-    $controller = new VideoListController($videoRepository);
-} else if ($_SERVER["PATH_INFO"] === '/novo-video') {
-    if ($_SERVER['REQUEST_METHOD'] === "GET") {
-        $controller = new VideoFormController($videoRepository);
-    } else if ($_SERVER['REQUEST_METHOD'] === "POST") {
-        $controller = new VideoCreateController($videoRepository);
-    }
-} else if ($_SERVER["PATH_INFO"] === '/editar-video') {
-    if ($_SERVER['REQUEST_METHOD'] === "GET") {
-        $controller = new VideoFormController($videoRepository);
-    } else if ($_SERVER['REQUEST_METHOD'] === "POST") {
-        $controller = new VideoEditController($videoRepository);
-    }
-} else if ($_SERVER["PATH_INFO"] === '/remover-video') {
-    $controller = new VideoRemoveController($videoRepository);
+$routes = require_once __DIR__ ."/../config/routes.php";
+$pathInfo = $_SERVER["PATH_INFO"] ?? "/";
+$httpMethod = $_SERVER['REQUEST_METHOD'];
+
+$key = "$httpMethod|$pathInfo";
+if (array_key_exists($key, $routes)) {
+    $controllerClass = $routes[$key];
 } else {
-    $controller = new Error404Controller($videoRepository);
+    $controllerClass = Error404Controller::class;
 }
+
+$controller = new $controllerClass($videoRepository);
+
 $controller->processaRequisicao();
