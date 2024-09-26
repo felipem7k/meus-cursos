@@ -2,6 +2,7 @@
 
 namespace Felipem7k\Aluraplay\Controller;
 
+use Felipem7k\Aluraplay\Entity\Video;
 use Felipem7k\Aluraplay\Repository\VideoRepository;
 
 class VideoFormController implements Controller
@@ -12,10 +13,7 @@ class VideoFormController implements Controller
     public function processaRequisicao(): void
     {
         $id = filter_input(INPUT_GET,"id", FILTER_VALIDATE_INT);
-        $video = [
-            'url' => '',
-            'title'=> '',
-        ];
+        $video = null;
     
         if (!empty($id)) {
             $video = $this->videoRepository->find(intval($id));

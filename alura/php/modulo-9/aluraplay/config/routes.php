@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Felipem7k\Aluraplay\Controller\LoginController;
 use Felipem7k\Aluraplay\Controller\LoginFormController;
+use Felipem7k\Aluraplay\Controller\LogoutController;
 use Felipem7k\Aluraplay\Controller\VideoCreateController;
 use Felipem7k\Aluraplay\Controller\VideoEditController;
 use Felipem7k\Aluraplay\Controller\VideoFormController;
@@ -19,4 +20,5 @@ return [
     "GET|/remover-video"=> VideoRemoveController::class,
     "GET|/login"=> LoginFormController::class,
     "POST|/login"=> LoginController::class,
+    "GET|/logout"=> LogoutController::class,
 ];
