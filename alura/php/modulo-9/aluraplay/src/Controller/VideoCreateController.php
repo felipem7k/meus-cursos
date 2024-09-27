@@ -22,7 +22,17 @@ class VideoCreateController implements Controller
             header("Location: /?sucesso=0");
             exit();
         }
-        if ($this->videoRepository->add(new Video($url, $titulo)) == false) {
+        $video = new Video($url, $titulo);
+        if ($_FILES["image"]["error"] === UPLOAD_ERR_OK) {
+            $fileName = uniqid('upload_') . $_FILES["image"]["name"];
+            move_uploaded_file(
+                $_FILES["image"]["tmp_name"],
+                __DIR__ . '/../../public/img/uploads/' .  $fileName
+            );
+            $video->setFilePath($fileName);
+        }
+
+        if ($this->videoRepository->add($video) == false) {
             header("Location: /?sucesso=0");
             exit();
         }

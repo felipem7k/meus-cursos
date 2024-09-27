@@ -31,6 +31,15 @@ class VideoEditController implements Controller
         $video = new Video($url, $titulo);
         $video->setId($id);
         
+        if ($_FILES["image"]["error"] === UPLOAD_ERR_OK) {
+            $fileName = uniqid('upload_') . $_FILES["image"]["name"];
+            move_uploaded_file(
+                $_FILES["image"]["tmp_name"],
+                __DIR__ . '/../../public/img/uploads/' .  $fileName
+            );
+            $video->setFilePath($fileName);
+        }
+
         if ($this->videoRepository->update($video) == false) {
             header("Location: /?sucesso=0");
             exit();
