@@ -32,12 +32,17 @@ class VideoEditController implements Controller
         $video->setId($id);
         
         if ($_FILES["image"]["error"] === UPLOAD_ERR_OK) {
-            $fileName = uniqid('upload_') . $_FILES["image"]["name"];
-            move_uploaded_file(
-                $_FILES["image"]["tmp_name"],
-                __DIR__ . '/../../public/img/uploads/' .  $fileName
-            );
-            $video->setFilePath($fileName);
+            $finfo = new \finfo(FILEINFO_MIME_TYPE);
+            $mimeType = $finfo->file($_FILES["image"]["tmp_name"]);
+
+            if (str_starts_with($mimeType,"image/")) {
+                $fileName = uniqid('upload_') . pathinfo($_FILES["image"]["name"], PATHINFO_BASENAME);
+                move_uploaded_file(
+                    $_FILES["image"]["tmp_name"],
+                    __DIR__ . '/../../public/img/uploads/' .  $fileName
+                );
+                $video->setFilePath($fileName);
+            }
         }
 
         if ($this->videoRepository->update($video) == false) {
