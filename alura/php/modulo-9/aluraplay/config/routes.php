@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Felipem7k\Aluraplay\Controller\JsonNewVideoController;
+use Felipem7k\Aluraplay\Controller\JsonVideoListController;
 use Felipem7k\Aluraplay\Controller\LoginController;
 use Felipem7k\Aluraplay\Controller\LoginFormController;
 use Felipem7k\Aluraplay\Controller\LogoutController;
@@ -21,4 +23,6 @@ return [
     "GET|/login"=> LoginFormController::class,
     "POST|/login"=> LoginController::class,
     "GET|/logout"=> LogoutController::class,
+    "GET|/videos-json"=> JsonVideoListController::class,
+    "POST|/videos"=> JsonNewVideoController::class,
 ];
