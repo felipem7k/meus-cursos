@@ -1,0 +1,16 @@
+{
+    "name": "felipem7k/aluraplay",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Felipem7k\\Aluraplay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Felipe",
+            "email": "felipems3004@gmail.com"
+        }
+    ],
+    "require": {}
+}
