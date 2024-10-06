@@ -3,8 +3,9 @@
 declare(strict_types= 1);
 
 use Felipem7k\Aluraplay\Controller\Error404Controller;
-
 use Felipem7k\Aluraplay\Repository\VideoRepository;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7Server\ServerRequestCreator;
 
 require_once __DIR__ ."/../vendor/autoload.php";
 
@@ -38,4 +39,25 @@ if (array_key_exists($key, $routes)) {
 
 $controller = new $controllerClass($videoRepository);
 
-$controller->processaRequisicao();
+$psr17Factory = new Psr17Factory();
+
+$creator = new ServerRequestCreator(
+    $psr17Factory,
+    $psr17Factory,
+    $psr17Factory,
+    $psr17Factory,
+);
+
+$request = $creator->fromGlobals();
+
+$response = $controller->handle($request);
+
+http_response_code($response->getStatusCode());
+
+foreach ($response->getHeaders() as $name => $values) {
+    foreach ($values as $value) {  
+        header(sprintf("%s: %s", $name, $value), false);
+    }
+}
+
+echo $response->getBody();

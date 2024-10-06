@@ -3,29 +3,44 @@
 namespace Felipem7k\Aluraplay\Controller;
 
 use Felipem7k\Aluraplay\Entity\Video;
+use Felipem7k\Aluraplay\Helper\FlashMessageTrait;
 use Felipem7k\Aluraplay\Repository\VideoRepository;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-class VideoEditController implements Controller
+class VideoEditController implements RequestHandlerInterface
 {
+    use FlashMessageTrait;
     public function __construct(private VideoRepository $videoRepository)
     {
     }
-    public function processaRequisicao(): void
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $id = filter_input(INPUT_GET,"id", FILTER_VALIDATE_INT);
+        $queryParams = $request->getQueryParams();
+        $parseBody = $request->getParsedBody();
+
+        $id = filter_var($queryParams["id"], FILTER_VALIDATE_INT);
         if (empty($id)) {
-            header("Location: /?sucesso=0");
-            exit();
+            $this->addErrorMessage("ID inválido.");
+            return new Response(302, [
+                "Location"=> "/"
+            ]);
         }
-        $url = filter_input(INPUT_POST,"url", FILTER_VALIDATE_URL);
+        $url = filter_var($parseBody["url"], FILTER_VALIDATE_URL);
         if (empty($url)) {
-            header("Location: /?sucesso=0");
-            exit();
+            $this->addErrorMessage("URL inválida.");
+            return new Response(302, [
+                "Location"=> "/"
+            ]);
         }
-        $titulo = filter_input(INPUT_POST,"titulo");
+        $titulo = filter_var($parseBody["titulo"]);
         if (empty($titulo)) {
-            header("Location: /?sucesso=0");
-            exit();
+            $this->addErrorMessage("Título inválido.");
+            return new Response(302, [
+                "Location"=> "/"
+            ]);
         }
         
         $video = new Video($url, $titulo);
@@ -46,10 +61,14 @@ class VideoEditController implements Controller
         }
 
         if ($this->videoRepository->update($video) == false) {
-            header("Location: /?sucesso=0");
-            exit();
+            $this->addErrorMessage("Ocorreu um erro no upload do arquivo. Tente novamente.");
+            return new Response(302, [
+                "Location"=> "/"
+            ]);
         }
         
-        header("Location: /?sucesso=1");
+        return new Response(302, [
+            "Location"=> "/"
+        ]);
     }
 }
