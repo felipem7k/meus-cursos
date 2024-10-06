@@ -2,11 +2,12 @@
 
 namespace Felipem7k\Aluraplay\Controller;
 
-use Felipem7k\Aluraplay\Controller\ControllerWithHtml;
+use Felipem7k\Aluraplay\Helper\HtmlRendererTrait;
 use Felipem7k\Aluraplay\Repository\VideoRepository;
 
-class VideoListController extends ControllerWithHtml implements Controller
+class VideoListController implements Controller
 {
+    use HtmlRendererTrait;
     public function __construct(private VideoRepository $videoRepository)
     {
     }

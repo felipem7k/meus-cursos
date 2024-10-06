@@ -9,6 +9,10 @@
     box-sizing: border-box;
 }
 
+body > header {
+    height: 80px;
+}
+
 body {
     font-family: Roboto, Arial, Helvetica, sans-serif;
     background-color: var(--azul-claro);
@@ -41,6 +45,10 @@ body {
     cursor: pointer;
 }
 
+.formulario__titulo.erro {
+    color: red;
+    margin-top: 1rem    ;
+}
 
 .cabecalho__videos {
     background-image: url(../img/cabecalho/video_call.png);

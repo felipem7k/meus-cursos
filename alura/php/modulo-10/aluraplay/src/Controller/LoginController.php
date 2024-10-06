@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Felipem7k\Aluraplay\Controller;
 
+use Felipem7k\Aluraplay\Helper\FlashMessageTrait;
 use \PDO;
 
 class LoginController implements Controller
 {
     private PDO $pdo;
+    use FlashMessageTrait;
 
     public function __construct()
     {
@@ -40,7 +42,8 @@ class LoginController implements Controller
             $_SESSION["logado"] = true;
             header('Location: /');
         } else {
-            header('Location: /login?sucesso=0');
+            $this->addErrorMessage('Usuário ou senha inválidos');
+            header('Location: /login');
         }
     }
 }

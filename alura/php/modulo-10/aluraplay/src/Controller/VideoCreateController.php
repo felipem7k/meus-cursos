@@ -3,10 +3,12 @@
 namespace Felipem7k\Aluraplay\Controller;
 
 use Felipem7k\Aluraplay\Entity\Video;
+use Felipem7k\Aluraplay\Helper\FlashMessageTrait;
 use Felipem7k\Aluraplay\Repository\VideoRepository;
 
 class VideoCreateController implements Controller
 {
+    use FlashMessageTrait;
     public function __construct(private VideoRepository $videoRepository)
     {
     }
@@ -14,12 +16,14 @@ class VideoCreateController implements Controller
     {
         $url = filter_input(INPUT_POST,"url", FILTER_VALIDATE_URL);
         if (empty($url)) {
-            header("Location: /?sucesso=0");
+            $this->addErrorMessage("URL inválida.");
+            header("Location: /novo-video");
             exit();
         }
         $titulo = filter_input(INPUT_POST,"titulo");
         if (empty($titulo)) {
-            header("Location: /?sucesso=0");
+            $this->addErrorMessage("Título não informado.");
+            header("Location: /novo-video");
             exit();
         }
         $video = new Video($url, $titulo);
@@ -38,10 +42,11 @@ class VideoCreateController implements Controller
         }
 
         if ($this->videoRepository->add($video) == false) {
-            header("Location: /?sucesso=0");
+            $this->addErrorMessage("Erro ao cadastrar vídeo.");
+            header("Location: /");
             exit();
         }
 
-        header("Location: /?sucesso=1");
+        header("Location: /");
     }
 }
