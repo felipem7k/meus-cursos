@@ -3,6 +3,7 @@
 
 #servico {
     background: variaveis.$gradiente-primario;
+    padding: 5rem 0;
 
     .cards {
         @include mixins.margem-central(80%);
