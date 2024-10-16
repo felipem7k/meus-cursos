@@ -1,13 +1,21 @@
 {
     "private": true,
-    "type": "module",
+    "type": "commonjs",
     "scripts": {
         "dev": "vite",
+        "mix": "mix",
         "build": "vite build"
     },
     "devDependencies": {
         "axios": "^1.7.4",
+        "laravel-mix": "^6.0.49",
         "laravel-vite-plugin": "^1.0",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.79.5",
+        "sass-loader": "^12.1.0",
         "vite": "^5.0"
+    },
+    "dependencies": {
+        "bootstrap": "^5.3.3"
     }
 }
