@@ -16,10 +16,10 @@
     <main>
         <img src="img/bag.png" alt="Sacola com produtos">
         <form action="#">
-            <input id="input-item" type="text" placeholder="Digite o item que deseja adicionar">
+            <input id="input-item" id="input-item" type="text" placeholder="Digite o item que deseja adicionar">
             <button id="adicionar-botao">Salvar item</button>
         </form>
-        <ul>
+        <ul id="lista-de-compras">
             <h2>Lista de Compras</h2>
             <hr />
             <li>
@@ -34,11 +34,11 @@
                         <p>Queijo Minas</p>
                     </div>
                     <div>
-                        <button class="botao-acao">
-                            <img src="img/delete.svg" alt="Remover item">
+                        <button class="item-lista-button">
+                            <img src="./img/delete.svg" alt="remover">
                         </button>
-                        <button class="botao-edicao">
-                            <img src="img/edit.svg" alt="Editar item">
+                        <button class="item-lista-button">
+                            <img src="./img/edit.svg" alt="editar">
                         </button>
                     </div>
                 </div>
@@ -46,6 +46,7 @@
             </li>
         </ul>
     </main>
+    <script src="script.js"></script>
 </body>
 
 </html>

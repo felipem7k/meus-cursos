@@ -145,7 +145,11 @@ ul {
     transform: rotate(-140deg);
 }
 
-.botao-acao {
-    background-color: transparent;
+.item-lista-button {
     border: none;
+    background-color: transparent;
+}
+
+.container-lista {
+    width: 100%;
 }
