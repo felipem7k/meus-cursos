@@ -1,7 +1,8 @@
 const item = document.getElementById("input-item");
 const botaoSalvarItem = document.getElementById("adicionar-botao");
 const listaCompras = document.getElementById("lista-de-compras");
-let contador = 1
+const listaComprados = document.getElementById("lista-comprados");
+let contador = 1;
 
 botaoSalvarItem.addEventListener("click", adicionarItem);
 
@@ -29,6 +30,22 @@ function adicionarItem(evento) {
     contador++;
     checkboxLabel.setAttribute("for", checkboxId);
 
+    checkboxLabel.addEventListener("click", function(evento) {
+        const checkInput = evento.currentTarget.querySelector(".checkbox-input");
+        const checkCustomizado = evento.currentTarget.querySelector(".checkbox-customizado");
+        const nomeDoItem = evento.currentTarget.closest("li").querySelector("#item-nome");
+
+        if (checkInput.checked) {
+            checkCustomizado.classList.add("checked");
+            nomeDoItem.style.textDecoration = "line-through";
+            listaComprados.appendChild(itemDaLista);
+        } else {
+            checkCustomizado.classList.remove("checked");
+            nomeDoItem.style.textDecoration = "none";
+            listaCompras.appendChild(itemDaLista);
+        }
+    });
+
     // li > div.item-lista-container > div.container-nome-compra > div.checkbox-container > label.checkbox-1 > input.checkbox-input
     const checkboxInput = document.createElement("input");
     checkboxInput.type = "checkbox";
@@ -38,7 +55,6 @@ function adicionarItem(evento) {
     // li > div.item-lista-container > div.container-nome-compra > div.checkbox-container > label.checkbox-1 > div.checkbox-customizado
     const checkboxDiv = document.createElement("div");
     checkboxDiv.classList.add("checkbox-customizado");
-    checkboxDiv.classList.add("checked");
 
     checkboxLabel.appendChild(checkboxDiv);
     checkboxLabel.appendChild(checkboxInput);
@@ -46,6 +62,7 @@ function adicionarItem(evento) {
 
     // li > div.item-lista-container > div.container-nome-compra > p
     const compraNome = document.createElement("p");
+    compraNome.id = "item-nome";
     compraNome.textContent = item.value;
 
     containerCompraNome.appendChild(compraCheckboxContainer);
@@ -83,7 +100,8 @@ function adicionarItem(evento) {
     // li > p.item-lista-texto
     const data = document.createElement("p");
     data.classList.add("item-lista-texto");
-    data.textContent = "Segunda-feira (31/10/2022) às 08:30";
+    let date = new Date();
+    data.textContent = `${date.toLocaleDateString("pt-BR", {weekday: "long"})} (${date.toLocaleDateString("pt-BR")}) às ${date.toLocaleTimeString("pt-BR", {hour: "numeric", minute: "numeric"})}`;
 
     itemDaLista.appendChild(containerListaDeItem);
     itemDaLista.appendChild(data);
