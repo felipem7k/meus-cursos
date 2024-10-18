@@ -1,11 +1,10 @@
+const listaCompras = document.getElementById("lista-de-compras");
 const itemListaVazia = document.getElementById("item-lista-vazia");
 
-export function verificarListaVazia(lista) {
-    console.log(lista.childElementCount)
-    console.log(itemListaVazia.style.display)
-    if (lista.childElementCount <= 3 && itemListaVazia.style.display === "none") {
+export function verificarListaVazia() {
+    if (listaCompras.querySelectorAll("li").length === 0) {
         itemListaVazia.style.display = "block";
-    } else if (lista.childElementCount > 2) {
+    } else {
         itemListaVazia.style.display = "none";
     }
 }

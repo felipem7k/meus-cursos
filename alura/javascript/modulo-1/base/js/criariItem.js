@@ -1,3 +1,7 @@
+import { atualizarData } from "./atualizardata.js";
+import { editarItem } from "./editaritem.js";
+import { excluirItem } from "./excluirItem.js";
+import { verificarListaComprados } from "./verificarListaComprados.js";
 import { verificarListaVazia } from "./verificarListaVazia.js";
 
 const listaComprados = document.getElementById("lista-comprados");
@@ -41,7 +45,8 @@ export function criarItem(item, listaCompras) {
             listaCompras.appendChild(itemDaLista);
         }
         
-        verificarListaVazia(listaCompras);
+        verificarListaVazia();
+        verificarListaComprados();
     });
 
     // li > div.item-lista-container > div.container-nome-compra > div.checkbox-container > label.checkbox-1 > input.checkbox-input
@@ -79,6 +84,10 @@ export function criarItem(item, listaCompras) {
     compraBotao2Img.alt = "remover";
     compraBotao2.appendChild(compraBotao2Img);
 
+    compraBotao2.addEventListener("click", function() {
+        excluirItem(itemDaLista);
+    })
+
     // li > div.item-lista-container > div > button.item-lista-button
     const compraBotao1 = document.createElement("button");
     compraBotao1.classList.add("item-lista-button");
@@ -89,6 +98,10 @@ export function criarItem(item, listaCompras) {
     compraBotao1Img.alt = "editar";
     compraBotao1.appendChild(compraBotao1Img);
 
+    compraBotao1.addEventListener("click", function() {
+        editarItem(itemDaLista);
+    })
+
     containerCompraBotoes.appendChild(compraBotao2);
     containerCompraBotoes.appendChild(compraBotao1);
 
@@ -98,8 +111,7 @@ export function criarItem(item, listaCompras) {
     // li > p.item-lista-texto
     const data = document.createElement("p");
     data.classList.add("item-lista-texto");
-    let date = new Date();
-    data.textContent = `${date.toLocaleDateString("pt-BR", {weekday: "long"})} (${date.toLocaleDateString("pt-BR")}) às ${date.toLocaleTimeString("pt-BR", {hour: "numeric", minute: "numeric"})}`;
+    atualizarData(data);
 
     itemDaLista.appendChild(containerListaDeItem);
     itemDaLista.appendChild(data);

@@ -6,11 +6,15 @@ const listaCompras = document.getElementById("lista-de-compras");
 
 export function adicionarItem(evento) {
     evento.preventDefault();
-    
+
+    if (item.value == "") {
+        alert("Por favor, insira o nome do item."); 
+        return;
+    }
+
     const itemCriado = criarItem(item.value, listaCompras);
-    
-    verificarListaVazia(listaCompras);
 
     listaCompras.appendChild(itemCriado);
-
+    verificarListaVazia();
+    item.value = "";
 }
