@@ -5,19 +5,6 @@ uploadBtn.addEventListener("click", () => {
     uploadInput.click();
 })
 
-// uploadInput.addEventListener('change', function(event) {
-//     const file = event.target.files[0]; // Pegando o arquivo selecionado pelo usuário
-//     const preview = document.getElementById('preview');
-//     if (file) {
-//         const reader = new FileReader(); // Criando uma instância do FileReader
-//         reader.onload = function(e) {
-//             preview.src = e.target.result; // Atribuindo o resultado da leitura como fonte da imagem de pré-visualização
-//             preview.style.display = 'block'; // Tornando a pré-visualização visível
-//         };
-//         reader.readAsDataURL(file); // Lendo o arquivo como um Data URL
-//     }
-// });
-
 const imagemPrincipal = document.querySelector('.main-imagem');
 const nomeDaImagem = document.querySelector('.container-imagem-nome p');
 
@@ -51,3 +38,36 @@ function lerConteudoDoArquivo(arquivo) {
         leitor.readAsDataURL(arquivo);
     });
 }
+
+const inputTags = document.getElementById('categoria');
+const listaTags = document.getElementById('lista-tags');
+
+inputTags.addEventListener("keypress", (evento) => {
+    if (evento.key === "Enter") {
+        evento.preventDefault();
+        const tagTexto = inputTags.value.trim();
+        if (tagTexto !== "") {
+            const novaTag = document.createElement('li');
+            novaTag.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`;
+            listaTags.appendChild(novaTag);
+            inputTags.value = "";
+        };
+    };
+});
+
+listaTags.addEventListener("click", (evento) => {
+    if (evento.target.classList.contains('remove-tag')) {
+        const tagQueQueremosRemover = evento.target.parentElement;
+        listaTags.removeChild(tagQueQueremosRemover);
+    };
+});
+
+const tagsDisponiveis = ["Front-end", "Programação", "Data Science", "Full-stack", "DevOps"];
+
+async function verificaTagsDisponiveis(tagTexto) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(tagsDisponiveis.includes(tagTexto));
+        }, 1000);
+    });
+};
