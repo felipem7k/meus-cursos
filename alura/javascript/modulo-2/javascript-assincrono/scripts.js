@@ -42,19 +42,6 @@ function lerConteudoDoArquivo(arquivo) {
 const inputTags = document.getElementById('categoria');
 const listaTags = document.getElementById('lista-tags');
 
-inputTags.addEventListener("keypress", (evento) => {
-    if (evento.key === "Enter") {
-        evento.preventDefault();
-        const tagTexto = inputTags.value.trim();
-        if (tagTexto !== "") {
-            const novaTag = document.createElement('li');
-            novaTag.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`;
-            listaTags.appendChild(novaTag);
-            inputTags.value = "";
-        };
-    };
-});
-
 listaTags.addEventListener("click", (evento) => {
     if (evento.target.classList.contains('remove-tag')) {
         const tagQueQueremosRemover = evento.target.parentElement;
@@ -71,3 +58,47 @@ async function verificaTagsDisponiveis(tagTexto) {
         }, 1000);
     });
 };
+
+inputTags.addEventListener("keypress", async (evento) => {
+    if (evento.key === "Enter") {
+        evento.preventDefault();
+        const tagTexto = inputTags.value.trim();
+        if (tagTexto !== "") {
+            try {
+                const tagExiste = await verificaTagsDisponiveis(tagTexto);
+                if (!tagExiste) throw new Error("Tag não encontrada na lista."); 
+                const novaTag = document.createElement('li');
+                novaTag.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove-tag">`;
+                listaTags.appendChild(novaTag);
+                inputTags.value = "";
+            } catch (error) {
+                alert(error.message);
+            };
+        };
+    };
+});
+
+const botaoPublicar = document.querySelector('.botao-publicar');
+
+async function publicarProjeto(nomeProjeto, descricaoProjeto, tagsProjeto) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const deuCerto = Math.random() > 0.5;
+
+            if (deuCerto) {
+                resolve("Projeto publicado com sucesso.");
+            } else {
+                reject("Erro ao publicar o projeto.");
+            }
+        }, 2000);
+    });
+}
+
+botaoPublicar.addEventListener("click", async (evento) => {
+    evento.preventDefault();
+    const nomeDoProjeto = document.getElementById('nome').value;
+    const descricaoDoProjeto = document.getElementById('descricao').value;
+    const tagsProjeto = Array.from(listaTags.querySelectorAll("p")).map((tag) => tag.textContent);
+
+    await publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjeto);
+});
