@@ -100,5 +100,24 @@ botaoPublicar.addEventListener("click", async (evento) => {
     const descricaoDoProjeto = document.getElementById('descricao').value;
     const tagsProjeto = Array.from(listaTags.querySelectorAll("p")).map((tag) => tag.textContent);
 
-    await publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjeto);
+    try {
+        const resultado = await publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjeto);
+        console.log(resultado);
+        alert("Deu tudo certo!");
+    } catch (error) {
+        alert("Deu algo errado");
+    }
 });
+
+const botaoDescartar = document.querySelector('.botao-descartar');
+
+botaoDescartar.addEventListener("click", (evento) => {
+    evento.preventDefault();
+    const formulario = document.querySelector('form');
+    formulario.reset();
+
+    imagemPrincipal.src = "./img/imagem1.png";
+    nomeDaImagem.textContent = "";
+    
+    listaTags.innerHTML = "";
+})
