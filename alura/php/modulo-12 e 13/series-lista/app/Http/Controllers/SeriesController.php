@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SeriesFormRequest;
 use App\Models\Series;
 use App\Repositories\SeriesRepository;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class SeriesController extends Controller
+class SeriesController extends Controller implements HasMiddleware
 {
     public function __construct(private SeriesRepository $seriesRepository)
     {
 
+    }
+
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('autenticador', except: ['index']),
+        ];
     }
 
     public function index()

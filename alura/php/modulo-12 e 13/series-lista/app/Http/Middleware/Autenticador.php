@@ -23,4 +23,13 @@ class Autenticador
 
         return $next($request);
     }
+
+    public static function middleware(): array
+    {
+        return [
+            function (Request $request, Closure $next) {
+                return $next($request);
+            },
+        ];
+    }
 }
