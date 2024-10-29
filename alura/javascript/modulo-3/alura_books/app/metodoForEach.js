@@ -1,6 +1,8 @@
 const elementoListaDeLivros = document.getElementById('livros');
+const valorTotalLivrosDisponiveis = document.getElementById('valor_total_livros_disponiveis');
 
 function exibirLivrosNaTela(lista) {
+    valorTotalLivrosDisponiveis.innerHTML = "";
     elementoListaDeLivros.innerHTML = "";   
     lista.forEach(livro => {
         let disponibilidade = livro.quantidade <= 0 ? "indisponivel" : "";
