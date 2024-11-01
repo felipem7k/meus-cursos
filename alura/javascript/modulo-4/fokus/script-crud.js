@@ -1,9 +1,14 @@
 const btnAdicionarTarefa = document.querySelector('.app__button--add-task');
+const btnCancelarEnvioTarefa = document.querySelector('.app__form-footer__button--cancel');
 const formAdicionarTarefa = document.querySelector('.app__form-add-task');
 const textarea = document.querySelector('.app__form-textarea');
 const ulTarefas = document.querySelector('.app__section-task-list');
 
 let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+
+function salvarTarefas() {
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
 
 function criarElementoTarefa(tarefa) {
     const li = document.createElement('li')
@@ -25,6 +30,17 @@ function criarElementoTarefa(tarefa) {
 
     const botao = document.createElement('button');
     botao.classList.add('app_button-edit');
+
+    botao.onclick = () => {
+        const novaDescricao = prompt("Digite a descrição desejada:");
+
+        if (novaDescricao) {
+            paragrafo.textContent = novaDescricao;
+            tarefa.descricao = novaDescricao;
+            salvarTarefas();
+        }
+    }
+
     const imagemBotao = document.createElement('img');
     imagemBotao.setAttribute('src', 'imagens/edit.png')
     botao.append(imagemBotao)
@@ -39,6 +55,11 @@ function criarElementoTarefa(tarefa) {
 function appendTarefa(tarefa) {
     const elementoTarefa = criarElementoTarefa(tarefa);
     ulTarefas.append(elementoTarefa);
+}
+
+function fecharAdicaoTarefas() {
+    textarea.value = '';
+    formAdicionarTarefa.classList.add('hidden');
 }
 
 btnAdicionarTarefa.addEventListener('click', () => {
@@ -56,11 +77,14 @@ formAdicionarTarefa.addEventListener('submit', (evento) => {
 
     appendTarefa(tarefa);
 
-    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+    salvarTarefas();
 
-    textarea.value = '';
-    formAdicionarTarefa.classList.add('hidden');
+    fecharAdicaoTarefas();
 })
+
+btnCancelarEnvioTarefa.addEventListener('click', () => {
+    fecharAdicaoTarefas();
+});
 
 tarefas.forEach(tarefa => {
     appendTarefa(tarefa);
