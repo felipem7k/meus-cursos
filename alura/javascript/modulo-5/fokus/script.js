@@ -57,7 +57,7 @@ function alterarContexto(contexto) {
             Otimize sua produtividade,<br>
                 <strong class="app__title-strong">mergulhe no que importa.</strong>
             `
-            contagemEmSegundos = 10;
+            contagemEmSegundos = 1500;
             break;
         case "descanso-curto":
             titulo.innerHTML = `
