@@ -3,8 +3,8 @@ const uri = 'http://localhost:3000/pensamentos';
 const api = {
     async buscarPensamentos() {
         try {
-            const resposta = await fetch(uri);
-            return await resposta.json();
+            const resposta = await axios.get(uri);
+            return await resposta.data;
         } catch (error) {
             console.error(error)
         }
@@ -12,14 +12,8 @@ const api = {
 
     async salvarPensamento(pensamento) {
         try {
-            const resposta = await fetch(uri,{
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(pensamento)
-            });
-            return resposta.json();
+            const resposta = await axios.post(uri, pensamento);
+            return resposta.data;
         } catch (error) {
             console.error(error);
         }
@@ -27,8 +21,8 @@ const api = {
 
     async buscarPensamentoPorId(id) {
         try {
-            const resposta = await fetch(`${uri}/${id}`);
-            return await resposta.json();
+            const resposta = await axios.get(`${uri}/${id}`);
+            return await resposta.data;
         } catch (error) {
             console.error(error)
         }
@@ -36,14 +30,17 @@ const api = {
 
     async editarPensamento(pensamento) {
         try {
-            const resposta = await fetch(`${uri}/${pensamento.id}`,{
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(pensamento)
-            });
-            return resposta.json();
+            const resposta = await axios.put(`${uri}/${pensamento.id}`, pensamento);
+            return resposta.data;
+        } catch (error) {
+            console.error(error);
+        }
+    },
+
+    async excluirPensamento(id) {
+        try {
+            const resposta = await axios.delete(`${uri}/${id}`);
+            return resposta.data;
         } catch (error) {
             console.error(error);
         }
