@@ -23,6 +23,30 @@ const api = {
         } catch (error) {
             console.error(error);
         }
+    },
+
+    async buscarPensamentoPorId(id) {
+        try {
+            const resposta = await fetch(`${uri}/${id}`);
+            return await resposta.json();
+        } catch (error) {
+            console.error(error)
+        }
+    },
+
+    async editarPensamento(pensamento) {
+        try {
+            const resposta = await fetch(`${uri}/${pensamento.id}`,{
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(pensamento)
+            });
+            return resposta.json();
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
 

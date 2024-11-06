@@ -1,6 +1,8 @@
 import api from "./api.js";
 import ui from "./ui.js";
 
+const botaoCancelar = document.querySelector('#botao-cancelar');
+
 document.addEventListener("DOMContentLoaded", () => {
     ui.renderizarPensamentos();
 
@@ -11,13 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
 async function manipularSubmissaoFormulario(evento) {
     evento.preventDefault();
 
-    const conteudo = document.querySelector('#pensamento-conteudo').value;
-    const autoria = document.querySelector('#pensamento-autoria').value;
+    const id = document.querySelector('#pensamento-id').value;
+    let conteudo = document.querySelector('#pensamento-conteudo').value;
+    let autoria = document.querySelector('#pensamento-autoria').value;
     
     try {
-        await api.salvarPensamento({
-            conteudo, autoria
-        });
+        if (id) {
+            await api.editarPensamento({id, conteudo, autoria});
+        } else {
+            await api.salvarPensamento({conteudo, autoria});
+        };
         ui.renderizarPensamentos();
     } catch {
         console.error;
@@ -26,3 +31,8 @@ async function manipularSubmissaoFormulario(evento) {
         autoria = '';
     }
 }
+
+botaoCancelar.addEventListener('click', () => {
+    document.querySelector('#pensamento-conteudo').value = '';
+    document.querySelector('#pensamento-autoria').value = '';
+});
