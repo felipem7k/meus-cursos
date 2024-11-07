@@ -37,6 +37,18 @@ const ui = {
         pensamentoAutoria.textContent = pensamento.autoria;
         pensamentoAutoria.classList.add("pensamento-autoria");
 
+        const pensamentoData = document.createElement("div");
+        var options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            timeZone: 'UTC'
+        }
+        const dataFormatada = pensamento.data.toLocaleDateString("pt-BR", options);
+        pensamentoData.textContent = dataFormatada;
+        pensamentoData.classList.add("pensamento-data");
+
         const botaoEditar = document.createElement('button');
         botaoEditar.classList.add('botao-editar');
         botaoEditar.onclick = () => ui.preencherFormulario(pensamento.id);
@@ -87,6 +99,7 @@ const ui = {
         li.appendChild(iconeAspas);
         li.appendChild(pensamentoConteudo);
         li.appendChild(pensamentoAutoria);
+        li.appendChild(pensamentoData);
         li.appendChild(icones);
         listaPensamentos.appendChild(li);
     },
@@ -97,7 +110,8 @@ const ui = {
         document.querySelector('#pensamento-id').value = pensamento.id;
         document.querySelector('#pensamento-conteudo').value = pensamento.conteudo;
         document.querySelector('#pensamento-autoria').value = pensamento.autoria;
-        document.querySelector('#pensamento-data').value = pensamento.data;
+        document.querySelector('#pensamento-data').value = pensamento.data.toISOString().split("T")[0];
+        document.querySelector('#form-container').scrollIntoView();
     }
 };
 

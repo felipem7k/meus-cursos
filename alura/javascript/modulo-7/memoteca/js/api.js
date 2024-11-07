@@ -1,18 +1,27 @@
 const uri = 'http://localhost:3000/pensamentos';
 
+function converterStringParaData(data) {
+    const [ano, mes, dia] = data.split('-');
+    return new Date(Date.UTC(ano, mes - 1, dia));
+}
+
 const api = {
     async buscarPensamentos() {
         try {
             const resposta = await axios.get(uri);
-            return await resposta.data;
+            const pensamentos = await resposta.data;
+            return pensamentos.map(pensamento => {
+                return {...pensamento, data: new Date(pensamento.data)}
+            });
         } catch (error) {
             console.error(error)
-        }
+        };
     },
 
     async salvarPensamento(pensamento) {
         try {
-            const resposta = await axios.post(uri, pensamento);
+            const data = converterStringParaData(pensamento.data);
+            const resposta = await axios.post(uri, {...pensamento, favorito: false, data: data.toISOString()});
             return resposta.data;
         } catch (error) {
             console.error(error);
@@ -22,7 +31,8 @@ const api = {
     async buscarPensamentoPorId(id) {
         try {
             const resposta = await axios.get(`${uri}/${id}`);
-            return await resposta.data;
+            const pensamento = await resposta.data;
+            return {...pensamento, data: new Date(pensamento.data)};
         } catch (error) {
             console.error(error)
         }

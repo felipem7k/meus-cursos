@@ -30,14 +30,14 @@
     },
     {
       "id": "6a2b",
-      "favorito": false,
+      "favorito": true,
       "conteudo": "Foi sem querer querendo!",
       "autoria": "Chaves",
       "data": "2024-11-07T13:22:04.345Z"
     },
     {
       "id": "5c8f",
-      "favorito": false,
+      "favorito": true,
       "conteudo": "Resolver o bug não consegue? Esfriar a cabeça vc deve.",
       "autoria": "Mestre Yoda",
       "data": "2024-11-07T14:23:05.678Z"
@@ -51,7 +51,7 @@
     },
     {
       "id": "3f1a",
-      "favorito": false,
+      "favorito": true,
       "conteudo": "Conserta minha impressora?",
       "autoria": "Grupo da família",
       "data": "2024-11-07T16:25:07.234Z"
@@ -76,6 +76,13 @@
       "conteudo": "Em x1 de riven contra irelia rusha cdr ou dano?",
       "autoria": "Lol",
       "data": "2024-11-07T19:28:10.123Z"
+    },
+    {
+      "id": "c912",
+      "conteudo": "2 de novembro",
+      "autoria": "data",
+      "data": "2024-11-02T00:00:00.000Z",
+      "favorito": false
     }
   ]
 }
