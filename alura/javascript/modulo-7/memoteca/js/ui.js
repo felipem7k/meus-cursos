@@ -97,6 +97,7 @@ const ui = {
         document.querySelector('#pensamento-id').value = pensamento.id;
         document.querySelector('#pensamento-conteudo').value = pensamento.conteudo;
         document.querySelector('#pensamento-autoria').value = pensamento.autoria;
+        document.querySelector('#pensamento-data').value = pensamento.data;
     }
 };
 
