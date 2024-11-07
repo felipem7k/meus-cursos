@@ -57,6 +57,15 @@ const api = {
         } catch {
             alert('Ocorreu algum erro ao buscar pensamentos.');
         }
+    },
+
+    async atualizarFavorito(id, favorito) {
+        try {
+            const resposta = axios.patch(`${uri}/${id}`, {favorito});
+            return resposta.data;
+        } catch {
+            console.error
+        }
     }
 }
 
