@@ -12,6 +12,18 @@ document.addEventListener("DOMContentLoaded", () => {
     inputBusca.addEventListener('input', manipularBusca)
 });
 
+
+function validarConteudo(conteudo) {
+    const regex = /^[A-Za-z\s]{10,}$/;
+    const conteudoSemVazios = conteudo.replaceAll(/\s+/g, '');
+    return regex.test(conteudoSemVazios);  
+};
+
+function validarAutoria(autoria) {
+    const regex = /^[A-Za-z]{3,15}$/;
+    return regex.test(autoria);  
+};
+
 async function manipularSubmissaoFormulario(evento) {
     evento.preventDefault();
 
@@ -20,10 +32,20 @@ async function manipularSubmissaoFormulario(evento) {
     let autoria = document.querySelector('#pensamento-autoria').value;
     let data = document.querySelector('#pensamento-data').value;
     
+    if (!validarAutoria(autoria)) {
+        alert('O conteúdo precisa conter entre 3 e 15 carácteres, não contendo carácteres especiais nem espaço.');
+        return;
+    }
+
+    if (!validarConteudo(conteudo)) {
+        alert('O conteúdo precisa conter mais de 10 carácteres, não contendo carácteres especiais.');
+        return;
+    };
+
     if (!validarData(data)) {   
         alert('Não é permitido o cadastro de datas futuras. Selecione outra data.');
         return;
-    }
+    };
 
     try {
         if (id) {
