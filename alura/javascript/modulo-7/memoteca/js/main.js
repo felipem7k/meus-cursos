@@ -4,8 +4,23 @@ import ui from "./ui.js";
 const botaoCancelar = document.querySelector('#botao-cancelar');
 const inputBusca = document.querySelector('#campo-busca');
 
+const pensamentosSet = new Set();
+
+async function adicionarChaveAoPensamento() {
+    try {
+      const pensamentos = await api.buscarPensamentos();
+      pensamentos.forEach(pensamento => {
+        const chavePensamento = `${pensamento.conteudo.trim().toLowerCase()}-${pensamento.autoria.trim().toLowerCase()}`;
+        pensamentosSet.add(chavePensamento);
+      });
+    } catch (error) {
+      alert('Erro ao adicionar chave ao pensamento');
+    };
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     ui.renderizarPensamentos();
+    adicionarChaveAoPensamento();
 
     const pensamentoForm = document.querySelector('#pensamento-form');
     pensamentoForm.addEventListener('submit', manipularSubmissaoFormulario);
@@ -45,6 +60,13 @@ async function manipularSubmissaoFormulario(evento) {
     if (!validarData(data)) {   
         alert('Não é permitido o cadastro de datas futuras. Selecione outra data.');
         return;
+    };
+
+    const conteudoEAutoria = `${autoria.trim().toLowerCase()}-${conteudo.trim().toLowerCase()}`;
+
+    if (pensamentosSet.has(conteudoEAutoria)) {
+        alert('Este pensamento já existe.');
+        return
     };
 
     try {
