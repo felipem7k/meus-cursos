@@ -3,7 +3,7 @@ import axios from "axios";
 
 async function buscarEMostrarVideos() {
   try {
-    const busca = await axios.get("http://localhost:3000/videos");
+    const busca = await axios.get(import.meta.env.VITE_URL_VIDEOS);
     const videos = busca.data;
 
     videos.forEach((video) => {
