@@ -1,4 +1,5 @@
 const containerVideos = document.querySelector(".videos__container");
+import axios from "axios";
 
 async function buscarEMostrarVideos() {
   try {
