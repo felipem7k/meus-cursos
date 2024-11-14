@@ -23,6 +23,10 @@
   padding-bottom: 32px;
 }
 
+.container__primeiro--texto h1 span {
+  color: var(--azul-escuro);
+}
+
 .container__primeiro--texto-botao {
   width: 31.8rem;
   height: 6.6rem;
