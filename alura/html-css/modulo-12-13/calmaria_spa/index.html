@@ -160,8 +160,9 @@
             Cadastre-se em nossa <span lang="en">newsletter</span> para receber descontos e novidades
             sobre nossos serviços.
           </p>
+          <label for="inscricao">Inscrever-se</label>
           <div class="container__incricao--form-input">
-            <input id="inscricao" type="email" />
+            <input name="inscricao" id="inscricao" type="email" />
             <button>Inscrever</button>
           </div>
         </div>
@@ -202,35 +203,33 @@
               canal é aberto para você!
             </p>
           </div>
-          <div class="container__contato--inputs">
-            <label>Nome</label>
-            <input type="text" />
-            <label>Email</label>
-            <input type="email" />
-            <label>Telefone</label>
-            <input type="text" />
-            <div>
-              <p class="container__contato--inputs--titulo">
-                Prefere contato por:
-              </p>
-              <div class="container__contato--inputs--div">
-                <div>
-                  <input type="radio" />
-                  <label>Ligação</label>
+          <form class="container__contato--inputs">
+            <label for="nome">Nome</label>
+            <input type="text" placeholder="Digite seu nome completo" id="nome" name="nome">
+            <label for="email">Email</label>
+            <input type="email" placeholder="Digite seu email" id="email" name="email">
+            <label for="telefone">Telefone</label>
+            <input type="text" placeholder="(XX) XXXX-XXXX" id="telefone" name="telefone">
+            <fieldset>
+                <legend class="container__contato--inputs--titulo">Prefere contato por:</legend>
+                <div class="container__contato--inputs--div">
+                    <div>
+                        <input type="radio" id="ligacao" name="ligacao" required>
+                        <label for="ligacao">Ligação</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="whatsapp" name="whatsapp" required>
+                        <label for="whatsapp">WhatsApp</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="email-contato" name="email-contato" required>
+                        <label for="email-contato">Email</label>
+                    </div>
                 </div>
-                <div>
-                  <input type="radio" />
-                  <label>WhatsApp</label>
-                </div>
-                <div>
-                  <input type="radio" />
-                  <label>Email</label>
-                </div>
-              </div>
-            </div>
-            <label>Mensagem</label>
-            <textarea type="text"></textarea>
-          </div>
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" type="text" placeholder="Envie sua mensagem" maxlength="500"></textarea>
+            </fieldset>
+          </form>
           <button>Enviar</button>
         </div>
       </section>

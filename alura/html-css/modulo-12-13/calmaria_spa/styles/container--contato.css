@@ -58,6 +58,13 @@
   gap: 2.4rem;
 }
 
+.container__contato
+  .container__contato--form
+  .container__contato--inputs
+  fieldset {
+  border: none;
+}
+
 .container__contato .container__contato--form .container__contato--inputs label,
 .container__contato
   .container__contato--form
