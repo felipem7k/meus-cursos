@@ -1,7 +1,18 @@
+function alternarModal(id, abrir) {
+  const modal = document.querySelector(`#${id}`);
+
+  if (abrir) {
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+  } else {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+}
+
 function alternarSubmenu(item, mostrar) {
   const submenu = item.querySelector(".submenu");
 
-  console.log(submenu.style.display);
   if (submenu) {
     submenu.style.display = mostrar ? "block" : "none";
 
@@ -15,6 +26,16 @@ function alternarSubmenu(item, mostrar) {
     dropdownExpandedIcon.classList.toggle("active", mostrar);
   }
 }
+
+document.addEventListener("keydown", (evento) => {
+  if (evento.key == "Escape") {
+    alternarModal("ver-modal-inscrito", false);
+
+    document.querySelectorAll(".cabecalho__lista-item").forEach((item) => {
+      alternarSubmenu(item, false);
+    });
+  }
+});
 
 document.querySelectorAll(".cabecalho__lista-item").forEach((item) => {
   item.addEventListener("mouseover", () => alternarSubmenu(item, true));

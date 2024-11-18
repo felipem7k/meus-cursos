@@ -200,7 +200,12 @@
               type="email"
             />
 
-            <button type="submit">Inscrever</button>
+            <button
+              type="submit"
+              onclick="alternarModal('ver-modal-inscrito', true)"
+            >
+              Inscrever
+            </button>
           </div>
         </div>
         <!-- Modal de formulário inscrito com sucesso -->
@@ -226,6 +231,7 @@
               />
               <!-- Botão para fechar a janela modal 'ver-modal-inscrito -->
               <button
+                onclick="alternarModal('ver-modal-inscrito', false)"
                 class="btn-fechar"
                 tabindex="0"
                 aria-label="Fechar formulário enviado"
