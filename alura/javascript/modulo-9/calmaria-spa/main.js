@@ -50,3 +50,30 @@ document.querySelectorAll(".cabecalho__lista-item").forEach((item) => {
     alternarSubmenu(item, !isDisplayed);
   });
 });
+
+function fecharAbrirAcordeao(button, abrir) {
+  const classeExpandido = "expandido";
+  const content = button.nextElementSibling;
+
+  if (abrir) {
+    content.classList.add(classeExpandido);
+  } else {
+    content.classList.remove(classeExpandido);
+  }
+
+  button.setAttribute("aria-expanded", abrir);
+  content.setAttribute("aria-hidden", !abrir);
+};
+
+function alternarAcordeao(button) {
+  let abrir = button.getAttribute("aria-expanded") === "false";
+  document.querySelectorAll(".botao-acordeao").forEach(btn => {
+    fecharAbrirAcordeao(btn, false);
+  });
+
+  fecharAbrirAcordeao(button, abrir);
+};
+
+document.querySelectorAll(".botao-acordeao").forEach(button => {
+  button.addEventListener("click",() => alternarAcordeao(button));
+});
