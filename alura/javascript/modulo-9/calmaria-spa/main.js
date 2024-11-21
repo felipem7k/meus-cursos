@@ -1,9 +1,22 @@
+function gerenciarFocoModal(modalId) {
+  const modal = document.querySelector(`#${modalId}`);
+  const elementosModal = modal.querySelectorAll(
+    'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+
+  const primeiroElemento = elementosModal[0];
+  const ultimoElemento = elementosModal[elementosModal.length - 1];
+
+  primeiroElemento.focus();
+}
+
 function alternarModal(id, abrir) {
   const modal = document.querySelector(`#${id}`);
 
   if (abrir) {
     modal.style.display = "block";
     document.body.style.overflow = "hidden";
+    gerenciarFocoModal(id)
   } else {
     modal.style.display = "none";
     document.body.style.overflow = "auto";
@@ -30,6 +43,8 @@ function alternarSubmenu(item, mostrar) {
 document.addEventListener("keydown", (evento) => {
   if (evento.key == "Escape") {
     alternarModal("ver-modal-inscrito", false);
+    alternarModal('ver-modal-contato', false);
+    alternarModal('ver-modal-enviado', false)
 
     document.querySelectorAll(".cabecalho__lista-item").forEach((item) => {
       alternarSubmenu(item, false);
@@ -66,12 +81,10 @@ function fecharAbrirAcordeao(button, abrir) {
 };
 
 function alternarAcordeao(button) {
-  let abrir = button.getAttribute("aria-expanded") === "false";
+  const abrir = button.getAttribute("aria-expanded") === "false";
   document.querySelectorAll(".botao-acordeao").forEach(btn => {
-    fecharAbrirAcordeao(btn, false);
+    fecharAbrirAcordeao(btn, btn == button ? abrir : false);
   });
-
-  fecharAbrirAcordeao(button, abrir);
 };
 
 document.querySelectorAll(".botao-acordeao").forEach(button => {
