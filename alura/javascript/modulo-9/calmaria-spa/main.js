@@ -1,5 +1,6 @@
-function gerenciarFocoModal(modalId) {
-  const modal = document.querySelector(`#${modalId}`);
+let ultimoElementoFocado;
+
+function gerenciarFocoModal(modal) {
   const elementosModal = modal.querySelectorAll(
     'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
   );
@@ -8,18 +9,38 @@ function gerenciarFocoModal(modalId) {
   const ultimoElemento = elementosModal[elementosModal.length - 1];
 
   primeiroElemento.focus();
+
+  modal.addEventListener("keydown", (evento) => {
+    if (evento.key === "Tab") {
+      if (evento.shiftKey) {
+        if (document.activeElement === primeiroElemento) {
+          evento.preventDefault();
+          ultimoElemento.focus();
+        }
+      } else {
+        if (document.activeElement === ultimoElemento) {
+          evento.preventDefault();
+          primeiroElemento.focus();
+        }
+      }
+    }
+  });
 }
 
 function alternarModal(id, abrir) {
   const modal = document.querySelector(`#${id}`);
 
   if (abrir) {
+    ultimoElementoFocado = document.activeElement;
+
     modal.style.display = "block";
     document.body.style.overflow = "hidden";
-    gerenciarFocoModal(id)
+    gerenciarFocoModal(modal)
   } else {
     modal.style.display = "none";
     document.body.style.overflow = "auto";
+
+    ultimoElementoFocado && ultimoElementoFocado.focus();
   }
 }
 
