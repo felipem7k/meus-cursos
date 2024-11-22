@@ -2,25 +2,6 @@
 
 Bem-vindo ao meu repositório de cursos! Aqui você encontrará os projetos e exercícios dos cursos que completei até agora.
 
-## Cursos Concluídos
-
-### 1. Lógica de Programação
-- **Descrição**: Curso introdutório sobre os fundamentos da lógica de programação.
-- **Conteúdo**:
-  - Estruturas de controle (if, else, switch)
-  - Laços de repetição (for, while, do-while)
-  - Funções e procedimentos
-  - Arrays e matrizes
-
-### 2. Git e GitHub
-- **Descrição**: Curso sobre controle de versão com Git e colaboração com GitHub.
-- **Conteúdo**:
-  - Conceitos básicos de Git (commit, branch, merge)
-  - Repositórios remotos e locais
-  - Colaboração com GitHub (pull requests, issues)
-  - Fluxos de trabalho com Git
-
-
 ## Como Usar
 
 - Clone o repositório:
