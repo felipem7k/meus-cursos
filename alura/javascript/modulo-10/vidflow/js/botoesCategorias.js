@@ -8,6 +8,8 @@ botoesCategorias.forEach((botao) => {
     filtrarPorCategoria(categoriaSelecionada);
     atualizarEstadosDosBotoes(categoriaSelecionada);
   });
+
+  botao.addEventListener("keydown", mudarFocoPorTeclado);
 });
 
 function associarPainel(categoriaSelecionada) {
@@ -34,5 +36,43 @@ function atualizarEstadosDosBotoes(categoriaSelecionada) {
     const botaoFoiSelecionado = botao.getAttribute("name") === categoriaSelecionada;
 
     botao.ariaSelected = botaoFoiSelecionado;
+    botao.setAttribute("tabindex", botaoFoiSelecionado ? 0 : -1)
   })
+}
+
+const tablist = document.querySelector('[role="tablist"]');
+
+function mudarFocoPorTeclado(evento) {
+  const botaoAtual = evento.target;
+  let novoBotao;
+
+  switch (evento.key) {
+    case "ArrowRight":
+      evento.preventDefault();
+      if (botaoAtual === tablist.lastElementChild) {
+        novoBotao = tablist.firstElementChild;
+      } else {
+        novoBotao = botaoAtual.nextElementSibling;
+      }
+      break;
+    case "ArrowLeft":
+      evento.preventDefault();
+      if (botaoAtual === tablist.firstElementChild) {
+        novoBotao = tablist.lastElementChild;
+      } else {
+        novoBotao = botaoAtual.previousElementSibling;
+      }
+      break;
+    case "Home":
+      novoBotao = tablist.firstElementChild;
+      break;
+    case "End":
+      novoBotao = tablist.lastElementChild;
+      break;
+  }
+
+  novoBotao.focus();
+  novoBotao.scrollIntoView({
+    behavior: "smooth"
+  });
 }
