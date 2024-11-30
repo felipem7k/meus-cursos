@@ -1,0 +1,25 @@
+https://www.youtube.com/watch?v=8hxhZkBzWhk&ab_channel=ErickWendel
+
+MOCK:
+    - é o objeto necessário para o teste funcionar.
+
+    cenário:
+        Ponto A
+        Ponto B
+        Ponto C
+
+        A => B
+
+        o mock para rodar o teste abaixo, é o resultado de A => B
+        B => C
+
+        errado, pois está duplicado
+        A => B => C
+
+STUB:
+    - serve para interceptar chamadas externas (DB, API, etc).
+        - garantir que nosso teste será offline.
+
+SPY:
+    - é um tipo de STUB usado para validar como a função foi chamada, com quais parametros, e quantas vezes.
+    
