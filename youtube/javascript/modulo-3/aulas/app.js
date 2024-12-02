@@ -1,11 +1,16 @@
 import modificador from "./modificador.js";
 import ingredientes from './ingredientes.js';
 
-console.log(modificador.capitalizarNovo(ingredientes, 'nome'))
+let ingredientesOrdenados = modificador.ordenar(ingredientes, 'nome');
+let ingredientesCapitalizados = modificador.capitalizar(ingredientesOrdenados, 'nome');
+let containerIngredientes = document.querySelector('#container-ingredientes');
 
-// var ingredientes = ['mel', 'água', 'sal', 'mostarda'];
+for (let ingrediente of ingredientesCapitalizados) {
+    containerIngredientes.innerHTML += `
+        <div class="ingrediente">
+            <img src="img/${ingrediente.img}" srcset="">
+            <p class="nome-ingrediente">${ingrediente.nome}</p>
+        </div> 
+    `;
+}
 
-// var resultadoCapitalizacao = modificador.capitalizar(ingredientes);
-// var resultadoOrdenacao = modificador.ordenar(resultadoCapitalizacao);
-
-// console.log(resultadoOrdenacao);
