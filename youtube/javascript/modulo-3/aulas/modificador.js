@@ -1,3 +1,25 @@
+function capitalizarNovo(colecao, atributo) {
+    if (typeof colecao[0] == 'object') {
+        return colecao.map((obj) => {
+            var letraInicial = obj[atributo].charAt(0).toUpperCase();
+            var restoTexto = obj[atributo].slice(1).toLowerCase();
+
+            obj[atributo] = letraInicial + restoTexto;
+
+            return obj;
+        });
+    } else {
+        return colecao.map((obj) => {
+            var letraInicial = obj.charAt(0).toUpperCase();
+            var restoTexto = obj.slice(1).toLowerCase();
+
+            obj = letraInicial + restoTexto;
+
+            return obj;
+        });
+    }
+};
+
 function capitalizar(vetor) {
     var modificado = [];
 
@@ -20,5 +42,6 @@ function ordenar(vetor) {
 
 export default {
     capitalizar: capitalizar, 
-    ordenar: ordenar
+    ordenar: ordenar,
+    capitalizarNovo: capitalizarNovo
 };

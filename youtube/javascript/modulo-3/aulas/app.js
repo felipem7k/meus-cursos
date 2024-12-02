@@ -1,7 +1,7 @@
 import modificador from "./modificador.js";
 import ingredientes from './ingredientes.js';
 
-console.log(ingredientes);
+console.log(modificador.capitalizarNovo(ingredientes, 'nome'))
 
 // var ingredientes = ['mel', 'água', 'sal', 'mostarda'];
 
