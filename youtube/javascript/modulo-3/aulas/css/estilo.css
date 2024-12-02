@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Passion+One:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+    margin: 4rem 0;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.ingrediente {
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ingrediente img {
+    height: 5rem;
+}
