@@ -1,8 +1,11 @@
 import modificador from "./modificador.js";
+import ingredientes from './ingredientes.js';
 
-var ingredientes = ['mel', 'água', 'sal', 'mostarda'];
+console.log(ingredientes);
 
-var resultadoCapitalizacao = modificador.capitalizar(ingredientes);
-var resultadoOrdenacao = modificador.ordenar(resultadoCapitalizacao);
+// var ingredientes = ['mel', 'água', 'sal', 'mostarda'];
 
-console.log(resultadoOrdenacao);
+// var resultadoCapitalizacao = modificador.capitalizar(ingredientes);
+// var resultadoOrdenacao = modificador.ordenar(resultadoCapitalizacao);
+
+// console.log(resultadoOrdenacao);
