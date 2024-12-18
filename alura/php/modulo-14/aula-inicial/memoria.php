@@ -1,9 +1,12 @@
 <?php
 
-$array = new SplFixedArray(32769);
+use \Ds\Vector;
+
+$vector = new Vector();
+$vector->allocate(32769);
 
 for ($i = 0; $i < 32769; $i++) {
-    $array[$i] = $i;
+    $vector->push($i);
 }
 
 var_dump(memory_get_usage() / 1024 / 1024);
