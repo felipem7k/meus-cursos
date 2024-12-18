@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ ."/Curso.php";
+require_once __DIR__ ."/Aluno.php";
 
 $curso = new Curso("Collections com PHP");
 
@@ -12,10 +13,22 @@ foreach($curso->recuperaAlteracoes() as $alteracao) {
     echo $alteracao . PHP_EOL;
 }
 
-$curso->adicionaAlunoParaEspera("Felipe Machado");
-$curso->adicionaAlunoParaEspera("Henrique Juliano");
-$curso->adicionaAlunoParaEspera("Matheus Kauan");
+$felipe = new Aluno("Felipe Machado");
+
+$curso->adicionaAlunoParaEspera($felipe);
+$curso->adicionaAlunoParaEspera(new Aluno("Henrique Juliano"));
+$curso->adicionaAlunoParaEspera(new Aluno("Matheus Kauan"));
 
 foreach($curso->recuperaAlunosEmEspera() as $aluno) {
-    echo $aluno . PHP_EOL;
+    echo $aluno->nome . PHP_EOL;
+}
+
+$curso->matricularAluno($felipe);
+$curso->matricularAluno(new Aluno("Henrique Juliano"));
+$curso->matricularAluno($felipe);
+
+echo "-------------" . PHP_EOL;
+
+foreach ($curso->recuperaAlunosMatriculados() as $aluno) {
+    echo $aluno->nome . PHP_EOL;
 }
