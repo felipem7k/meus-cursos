@@ -1,10 +1,11 @@
+import br.com.felipem7k.screenmatch.modelos.Filme;
+
 public class Principal {
     public static void main(String[] args) {
         Filme meuFilme = new Filme();
-        meuFilme.nome = "O poderoso chefão";
-        meuFilme.anoDeLancamento = 1990;
-        meuFilme.duracaoEmMinutos = 200;
-        meuFilme.incluidoNoPlano = true;
+        meuFilme.setNome("O poderoso chefão");
+        meuFilme.setAnoDeLancamento(1990);;
+        meuFilme.setDuracaoEmMinutos(200);;
 
         meuFilme.exibeFichaTecnica();
 
@@ -14,8 +15,7 @@ public class Principal {
         meuFilme.avalia(3);
         meuFilme.avalia(5);
 
-        System.out.println(meuFilme.somaDasAvaliacoes);
-        System.out.println(meuFilme.totalDeAvaliacoes);
         System.out.println(meuFilme.pegaMediaDasAvaliacoes());
+        System.out.println(meuFilme.getTotalDeAvaliacoes());
     }
 }
