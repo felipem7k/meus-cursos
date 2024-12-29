@@ -1,4 +1,6 @@
 import br.com.felipem7k.screenmatch.calculos.CalculadoraDeTempo;
+import br.com.felipem7k.screenmatch.calculos.FiltroRecomendacao;
+import br.com.felipem7k.screenmatch.modelos.Episodio;
 import br.com.felipem7k.screenmatch.modelos.Filme;
 import br.com.felipem7k.screenmatch.modelos.Serie;
 
@@ -17,8 +19,8 @@ public class Principal {
 
         meuFilme.avalia(5);
         meuFilme.avalia(3);
-        meuFilme.avalia(3);
-        meuFilme.avalia(3);
+        meuFilme.avalia(5);
+        meuFilme.avalia(5);
         meuFilme.avalia(5);
 
         System.out.println(meuFilme.pegaMediaDasAvaliacoes());
@@ -41,5 +43,15 @@ public class Principal {
         calculadora.inclui(outroFilme);
         calculadora.inclui(serie);
         System.out.println(calculadora.getTempoTotal());
+
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+        filtro.filtra(meuFilme);
+
+        Episodio episodio = new Episodio();
+        episodio.setNumero(1);
+        episodio.setSerie(serie);
+        episodio.setTotalVisualizacoes(300);
+
+        filtro.filtra(episodio);
     }
 }
