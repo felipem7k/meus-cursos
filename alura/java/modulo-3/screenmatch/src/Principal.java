@@ -8,13 +8,9 @@ import br.com.felipem7k.screenmatch.modelos.Serie;
 
 public class Principal {
     public static void main(String[] args) {
-        Filme meuFilme = new Filme();
-        meuFilme.setNome("O poderoso chefão");
-        meuFilme.setAnoDeLancamento(1990);
+        Filme meuFilme = new Filme("O poderoso chefão", 1990);
         meuFilme.setDuracaoEmMinutos(200);
-        Filme outroFilme = new Filme();
-        outroFilme.setNome("Tarzan");
-        outroFilme.setAnoDeLancamento(2000);
+        Filme outroFilme = new Filme("Tarzan", 2000);
         outroFilme.setDuracaoEmMinutos(60);
 
         meuFilme.exibeFichaTecnica();
@@ -28,10 +24,7 @@ public class Principal {
         System.out.println(meuFilme.pegaMediaDasAvaliacoes());
         System.out.println(meuFilme.getTotalDeAvaliacoes());
 
-        Serie serie = new Serie();
-
-        serie.setNome("Lost");
-        serie.setAnoDeLancamento(2010);
+        Serie serie = new Serie("Lost", 2010);
 
         serie.exibeFichaTecnica();
 
