@@ -7,6 +7,13 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import br.com.felipem7k.screenmatch.modelos.Titulo;
+import br.com.felipem7k.screenmatch.modelos.TituloOmdb;
+
 public class PrincipalComBusca {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner leitura = new Scanner(System.in);
@@ -23,8 +30,17 @@ public class PrincipalComBusca {
         HttpResponse<String> response = client
             .send(request, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println(response.body());
+        String json = response.body();
 
         leitura.close();
+
+        Gson gson = new GsonBuilder()
+            .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+            .create();
+            TituloOmdb meTituloOmdb = gson.fromJson(json, TituloOmdb.class);
+            System.out.println(meTituloOmdb);
+
+        Titulo meTitulo = new Titulo(meTituloOmdb);
+        System.out.println(meTitulo);
     }
 }
