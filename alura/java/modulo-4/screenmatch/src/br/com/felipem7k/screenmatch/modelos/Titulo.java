@@ -15,8 +15,13 @@ public class Titulo implements Comparable<Titulo> {
 
     public Titulo(TituloOmdb meTituloOmdb) {
         this.nome = meTituloOmdb.title();
+
+        if (meTituloOmdb.year().length() > 4) {
+            throw new ErroDeConversaoDeAnoException("Não consegui converter o ano porque tem mais de 04 caracteres.");
+        }
+        
         this.anoDeLancamento = Integer.valueOf(meTituloOmdb.year());
-        this.duracaoEmMinutos = Integer.valueOf(meTituloOmdb.runtime().substring(0,2));
+        this.duracaoEmMinutos = Integer.valueOf(meTituloOmdb.runtime().replace(" min", ""));
     }
 
     public void exibeFichaTecnica() {
