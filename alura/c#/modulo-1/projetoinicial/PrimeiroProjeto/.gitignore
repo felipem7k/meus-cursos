@@ -1,0 +1,40 @@
+# Sistema, arquivos ocultos e temporários
+**[Bb]in**
+**[Oo]bj**
+**.vs/**
+*.swp
+*~
+
+# Configurações de usuário
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Configurações de IDE e build
+*.localhistory
+*.recommenders
+*.ideworkspace
+*.orig
+*.log
+*.pid
+.DS_Store
+
+# Configurações de JetBrains Rider e outras IDEs
+.idea/
+*.sln.iml
+
+# Configurações de Visual Studio Code
+.vscode/
+
+# Configurações específicas de plataforma
+.gradle/
+build/
+.idea/
+.gradle/
+build/
+
+# Pacotes NuGet
+*.nupkg
+*.snupkg
+**/packages/*
