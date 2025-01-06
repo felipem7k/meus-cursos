@@ -1,4 +1,6 @@
 ﻿// Screen Sound
+using System.Collections.ObjectModel;
+
 string mensagemDeBoasVindas = "Boas vindas ao Screen Sound\n";
 //List<string> listaDeBandas = new List<string> {"Henrique e Juliano", "Jorge e Matheus"};
 Dictionary<string, List<int>> bandasRegistradas = new Dictionary<string, List<int>>();
@@ -41,7 +43,7 @@ void ExibirOpcoesDoMenu()
             AvaliarBanda();
             break;
         case 4:
-            Console.WriteLine($"Você digitou a opção {opcaoEscolhida}");
+            ExibirMedia();
             break;
         case -1:
             Console.WriteLine("Programa encerrado, até a próxima!");
@@ -115,6 +117,26 @@ void MostrarBandasRegistradas()
     foreach (string nomeDaBanda in bandasRegistradas.Keys)
     {
         Console.WriteLine($"Banda: {nomeDaBanda}");
+    }
+
+    PressioneParaVoltar();
+}
+
+void ExibirMedia()
+{
+    ExibirSubtitulo("Média da banda");
+
+    Console.Write("Digite o nome da banda desejada para calcular a média da nota: ");
+    string nomeBanda = Console.ReadLine()!;
+
+    if (bandasRegistradas.ContainsKey(nomeBanda))
+    {
+        List<int> notas = bandasRegistradas[nomeBanda];
+
+        Console.WriteLine($"A média das notas da banda {nomeBanda} é {notas.Average()}");
+    } else
+    {
+        Console.WriteLine($"Banda {nomeBanda} não encontrada!");
     }
 
     PressioneParaVoltar();
