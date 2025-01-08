@@ -1,18 +1,18 @@
-﻿Album albumHEJ = new();
-albumHEJ.Nome = "Manifesto Musical 2";
+﻿Banda banda = new("Henrique e Juliano");
+Album albumHEJ = new("Manifesto Musical 2");
 
-Musica musica1 = new()
+Musica musica1 = new(banda, "Última Saudade")
 {
-    Nome = "Última Saudade",
-    Duracao = 230
+    Duracao = 230,
+    Disponivel = true
 };
-Musica musica2 = new()
+Musica musica2 = new(banda, "Seja Ex")
 {
-    Nome = "Seja Ex",
     Duracao = 312
 };
 
 albumHEJ.AdicionarMusica(musica1);
 albumHEJ.AdicionarMusica(musica2);
 
-albumHEJ.ExibirMusicasDoAlbum();
+banda.AdicionarAlbum(albumHEJ);
+banda.ExibirDiscografia();

@@ -1,7 +1,8 @@
-﻿class Album
+﻿class Album(string nome)
 {
     private List<Musica> musicas = [];
-    public string Nome { get; set; }
+
+    public string Nome { get; } = nome;
     public int DuracaoTotal => musicas.Sum(musica => musica.Duracao);
 
     public void AdicionarMusica(Musica musica)
