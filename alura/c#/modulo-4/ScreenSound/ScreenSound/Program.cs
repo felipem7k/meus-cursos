@@ -29,6 +29,10 @@ using (HttpClient client = new())
 
         minhasMusicasPreferidas.ExibirMusicas();
         minhasMusicasPreferidas.GerarArquivoJson();
+
+        musicas[2].ExibirDetalhesDaMusica();
+
+        LinqFilter.FiltrarMusicaPorTonalidade(musicas, 1);
     }
     catch (Exception ex)
     {
