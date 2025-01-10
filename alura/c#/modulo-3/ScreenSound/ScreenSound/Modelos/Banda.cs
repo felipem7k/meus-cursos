@@ -19,6 +19,7 @@ internal class Banda : IAvaliavel
             return notas.Average(aval => aval.Nota);
         }
     }
+    public string? Resumo { get; set; }
     public List<Album> Albuns => albuns;
 
     public void AdicionarAlbum(Album album) 

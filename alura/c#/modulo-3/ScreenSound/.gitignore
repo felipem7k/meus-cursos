@@ -5,6 +5,8 @@
 *.swp
 *~
 
+*.env
+
 # Configurações de usuário
 *.user
 *.suo
