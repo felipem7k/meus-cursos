@@ -8,6 +8,12 @@ banda1.AdicionarNota(new Avaliacao(10));
 banda1.AdicionarNota(new Avaliacao(9));
 banda1.AdicionarNota(new Avaliacao(10));
 
+Album manifestoMusical2 = new("Manifesto Musical 2");
+
+manifestoMusical2.AdicionarNota(new Avaliacao(10));
+
+banda1.AdicionarAlbum(manifestoMusical2);
+
 Dictionary<string, Banda> bandasRegistradas = new()
 {
     { banda1.Nome, banda1 },
@@ -20,7 +26,8 @@ Dictionary<int, Menu> opcoes = new()
     {2, new MenuRegistrarAlbum()},
     {3, new MenuMostrarBandasRegistradas()},
     {4, new MenuAvaliarBanda()},
-    {5, new MenuExibirDetalhes()},
+    {5, new MenuAvaliarAlbum()},
+    {6, new MenuExibirDetalhes()},
     {-1, new MenuSair()}
 };
 
@@ -45,7 +52,8 @@ void ExibirOpcoesDoMenu()
     Console.WriteLine("Digite 2 para registrar o álbum de uma banda");
     Console.WriteLine("Digite 3 para mostrar todas as bandas");
     Console.WriteLine("Digite 4 para avaliar uma banda");
-    Console.WriteLine("Digite 5 para exibir os detalhes de uma banda");
+    Console.WriteLine("Digite 5 para avaliar um album");
+    Console.WriteLine("Digite 6 exibiar os detalhes de uma banda");
     Console.WriteLine("Digite -1 para sair");
 
     Console.Write("\nDigite a sua opção: ");
