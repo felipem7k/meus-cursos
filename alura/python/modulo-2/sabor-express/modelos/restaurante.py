@@ -27,6 +27,10 @@ class Restaurante:
         self._ativo = not self._ativo
         
     def receber_avaliacao(self, cliente, nota):
+        if nota < 0:
+            nota = 0
+        elif nota > 5:
+            nota = 5
         avaliacao = Avaliacao(cliente, nota)
         self._avaliacoes.append(avaliacao)
         
@@ -35,7 +39,7 @@ class Restaurante:
         quantidade_de_notas = len(self._avaliacoes)
         
         if quantidade_de_notas < 1:
-            return 0
+            return 5
         soma_das_notas = sum(avaliacao._nota for avaliacao in self._avaliacoes)
         return round(soma_das_notas / quantidade_de_notas, 1)
     
