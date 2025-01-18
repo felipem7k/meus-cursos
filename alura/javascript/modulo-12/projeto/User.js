@@ -1,16 +1,34 @@
 export default class User {
+    #nome;
+    #email;
+    #nascimento;
+    #role;
+    #ativo;
     constructor(nome, email, nascimento, role, ativo = true) {
-        this.nome = nome;
-        this.email = email;
-        this.nascimento = nascimento;
-        this.role = role || "estudante";
-        this.ativo = ativo;
+        this.#nome = nome;
+        this.#email = email;
+        this.#nascimento = nascimento;
+        this.#role = role || "estudante";
+        this.#ativo = ativo;
+    }
+
+    get nome() {
+        return this.#nome;
+    }
+    get email() {
+        return this.#email;
+    }
+    get nascimento() {
+        return this.#nascimento;
+    }
+    get role() {
+        return this.#role;
+    }
+    get ativo() {
+        return this.#ativo;
     }
 
     exibirInfos() {
-        return `${this.nome} (${this.email})`;
+        return `${this.role} | ${this.nome} (${this.email})`;
     }
 }
-
-const usuario = new User("Felipe", "f@fmail.com", "2022-03-12", null, null);
-console.log(usuario.exibirInfos());
