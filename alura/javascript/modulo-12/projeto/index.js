@@ -15,3 +15,6 @@ console.log(docente.exibirInfos());
 
 console.log(admin.criarCurso("Jquery", 10));
 console.log(docente.aprovarEstudante("Felipe", "Jquery"));
+
+const dadosFicticios = User.exibirInfosGenericas("Pedro", "p@mail.com");
+console.log(dadosFicticios);

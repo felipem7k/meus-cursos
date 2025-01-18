@@ -29,6 +29,10 @@ export default class User {
     }
 
     exibirInfos() {
-        return `${this.role} | ${this.nome} (${this.email})`;
+        return `${this.nome} (${this.email})`;
+    }
+
+    static exibirInfosGenericas(nome, email) {
+        return `${nome} (${email})`;
     }
 }
