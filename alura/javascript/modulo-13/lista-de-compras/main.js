@@ -5,6 +5,16 @@ const form = document.querySelector("#form-itens");
 const itensInput = document.querySelector("#receber-item");
 const ulItens = document.querySelector("#lista-de-itens");
 const ulItensComprados = document.querySelector("#itens-comprados");
+const listaRecuperada = localStorage.getItem('listaDeItens');
+
+function atualizaLocalStorage() {
+    localStorage.setItem('listaDeItens', JSON.stringify(listaDeItens));
+}
+
+if (listaRecuperada) {
+    listaDeItens = JSON.parse(listaRecuperada);
+    mostrarItem();
+}
 
 form.addEventListener("submit", evento => {
     evento.preventDefault();
@@ -87,6 +97,8 @@ function mostrarItem() {
             mostrarItem();
         });
     });
+
+    atualizaLocalStorage();
 }
 
 function salvarEdicao() {
