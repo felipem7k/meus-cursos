@@ -14,10 +14,16 @@ const graficoParaDolar = new Chart(graficoDolar, {
     },
 });
 
+function geraHorario() {
+    let data = new Date();
+    let horario = data.getHours() + ":" + data.getMinutes() + ":" + data.getSeconds();
+    return horario; 
+}
+
 async function conectaAPI() {
     const conecta = await fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL");
     const conectaTraduzido = await conecta.json();
     console.log(conectaTraduzido);
 }
 
-conectaAPI();
+setInterval(conectaAPI, 5000);
