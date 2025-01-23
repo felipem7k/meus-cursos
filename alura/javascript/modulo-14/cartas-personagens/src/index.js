@@ -1,3 +1,4 @@
+import PersonagemView from "./components/personagem-view.js";
 import Personagem from "./modules/personagem.js";
 
 const personagemPedrinho = {
@@ -8,21 +9,12 @@ const personagemPedrinho = {
     tipo: 'Mago',
 }
 
-const personagemFelipe = new Personagem();
-personagemFelipe.nome = "Felipe";
-personagemFelipe.vida = 100;
-personagemFelipe.mana = 30;
-personagemFelipe.level = 3;
-personagemFelipe.tipo = "guerreiro";
+const personagemFelipe = new Personagem("Felipe", 3, "Mago");
 personagemFelipe.descricao = "Mt forte";
 
-const personagemJose = new Personagem();
-personagemJose.nome = "Jose";
-personagemJose.vida = 40;
-personagemJose.mana = 50;
-personagemJose.level = 10;
-personagemJose.tipo = "arqueiro";
-personagemJose.descricao = "Mt forte";
+const personagemJose = new Personagem("Jose", 5, "Guerreiro");
+personagemJose.descricao = "Mt fraco";
 
-console.log(`Insignia de ${personagemFelipe.nome}: ${personagemFelipe.obterInsignia()}`);
-console.log(`Insignia de ${personagemJose.nome}: ${personagemJose.obterInsignia()}`);
+const personagens = [personagemFelipe, personagemJose];
+
+new PersonagemView(personagens).render();
