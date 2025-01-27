@@ -1,4 +1,5 @@
 import Armazenador from "./Armazenador.js";
+import { ValidaDebito, ValidaDeposito } from "./Decorators.js";
 import { GrupoTransacao } from "./GrupoTransacao.js";
 import { TipoTransacao } from "./TipoTransacao.js";
 import { Transacao } from "./Transacao.js";
@@ -56,21 +57,13 @@ export default class Conta {
         return gruposTransacoes;
     }
 
+    @ValidaDebito
     protected debitar(valor: number): void {
-        if (valor <= 0) {
-            throw new Error("O valor a ser debitado deve ser maior que 0!");
-        }
-        if (valor > this.saldo) {
-            throw new Error("Saldo insuficiente!");
-        }
-    
         this.saldo -= valor;
     }
     
+    @ValidaDeposito
     protected depositar(valor: number): void {
-        if (valor <= 0) {
-            throw new Error("O valor a ser debitado deve ser maior que 0!");
-        }
         this.saldo += valor;
     }
     
