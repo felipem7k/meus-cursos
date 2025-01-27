@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "noEmitOnError": true,
+        "experimentalDecorators": true
+    },
+    "include": [
+        "./*"
+    ]
+}

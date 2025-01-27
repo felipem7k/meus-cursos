@@ -5,7 +5,8 @@ interface Tarefa {
 
 interface EstadoAplicacao {
     tarefas: Tarefa[];
-    tarefaSelecionada: Tarefa | null;
+    tarefaSelecionada: Tarefa | null,
+    editando: boolean
 }
 
 let estadoInicial: EstadoAplicacao = {
@@ -23,14 +24,48 @@ let estadoInicial: EstadoAplicacao = {
             concluida: false
         }
     ],
-    tarefaSelecionada: null
+    tarefaSelecionada: null,
+    editando: false
 }
 
-function selecionarTarefa(estado: EstadoAplicacao, tarefa: Tarefa): EstadoAplicacao {
+const selecionarTarefa = (estado: EstadoAplicacao, tarefa: Tarefa): EstadoAplicacao => {
     return {
         ...estado,
         tarefaSelecionada: tarefa === estado.tarefaSelecionada ? null : tarefa
     };
+}
+
+const adicionarTarefa = (estado: EstadoAplicacao, tarefa: Tarefa): EstadoAplicacao => {
+    return {
+        ...estado,
+        tarefas: [
+            ...estado.tarefas,
+            tarefa
+        ]
+    }
+}
+
+// Deleta uma tarefa. Retorna um novo estado.
+const deletar = (estado: EstadoAplicacao): EstadoAplicacao => {
+    if (estado.tarefaSelecionada) {
+        const tarefas = estado.tarefas.filter(t => t != estado.tarefaSelecionada);
+        return { ...estado, tarefas, tarefaSelecionada: null, editando: false };
+    } else {
+        return estado;
+    }
+}
+// Deleta todas as tarefas. Retorna um novo estado.
+const deletarTodas = (estado: EstadoAplicacao): EstadoAplicacao => {
+    return { ...estado, tarefas: [], tarefaSelecionada: null, editando: false };
+}
+// Deleta todas as tarefas concluídas. Retorna um novo estado.
+const deletarTodasConcluidas = (estado: EstadoAplicacao): EstadoAplicacao => {
+    const tarefas = estado.tarefas.filter(t => !t.concluida);
+    return { ...estado, tarefas, tarefaSelecionada: null, editando: false };
+}
+// Modifica o estado para entrar no modo de edição. Retorna um novo estado.
+const editarTarefa = (estado: EstadoAplicacao, tarefa: Tarefa): EstadoAplicacao => {
+    return { ...estado, editando: !estado.editando, tarefaSelecionada: tarefa };
 }
 
 function atualizarUI() {
@@ -44,8 +79,57 @@ function atualizarUI() {
     </svg>
     `;
 
+    const formAdicionarTarefa: HTMLFormElement = document.querySelector(".app__form-add-task");
+    const btnAdicionarTarefa: HTMLButtonElement = document.querySelector(".app__button--add-task");
+    const textarea: HTMLTextAreaElement = document.querySelector(".app__form-textarea");
+
+    const labelTarefaAtiva = document.querySelector<HTMLParagraphElement>('.app__section-active-task-description')
+    const btnCancelar: HTMLButtonElement = document.querySelector('.app__form-footer__button--cancel') as HTMLButtonElement
+    const btnDeletar: HTMLButtonElement = document.querySelector('.app__form-footer__button--delete') as HTMLButtonElement
+    const btnDeletarConcluidas: HTMLButtonElement = document.querySelector('#btn-remover-concluidas') as HTMLButtonElement
+    const btnDeletarTodas: HTMLButtonElement = document.querySelector('#btn-remover-todas') as HTMLButtonElement
+    labelTarefaAtiva!.textContent = estadoInicial.tarefaSelecionada ? estadoInicial.tarefaSelecionada.descricao : null
+    if (estadoInicial.editando && estadoInicial.tarefaSelecionada) {
+        formAdicionarTarefa!.classList.remove('hidden')
+        textarea!.value = estadoInicial.tarefaSelecionada.descricao
+    } else {
+        formAdicionarTarefa!.classList.add('hidden')
+        textarea!.value = ''
+    }
+
+    btnAdicionarTarefa.onclick = (): void => {
+        formAdicionarTarefa.classList.toggle("hidden");
+    };
+
+    formAdicionarTarefa.onsubmit = (evento): void => {
+        evento.preventDefault();
+        const descricao: string = textarea.value;
+        estadoInicial = adicionarTarefa(estadoInicial, {
+            descricao,
+            concluida: false
+        });
+        atualizarUI();
+    };
+
+    btnCancelar.onclick = () => {
+        formAdicionarTarefa!.classList.add('hidden');
+    }
+    btnDeletar.onclick = () => {
+        estadoInicial = deletar(estadoInicial);
+        formAdicionarTarefa!.classList.add('hidden');
+        atualizarUI();
+    }
+    btnDeletarConcluidas.onclick = () => {
+        estadoInicial = deletarTodasConcluidas(estadoInicial);
+        atualizarUI();
+    }
+    btnDeletarTodas.onclick = () => {
+        estadoInicial = deletarTodas(estadoInicial);
+        atualizarUI();
+    }
+
     const ulTarefas: HTMLElement = document.querySelector(".app__section-task-list")!;
-    ulTarefas.innerHTML += "";
+    ulTarefas.innerHTML = "";
 
     estadoInicial.tarefas.forEach(tarefa => {
         const li = document.createElement('li');
@@ -71,10 +155,28 @@ function atualizarUI() {
             li.classList.add('app__section-task-list-item-complete');
         }
 
+        if (tarefa == estadoInicial.tarefaSelecionada) {
+            li.classList.add('app__section-task-list-item-active')
+        }
+
         li.appendChild(svgIcon);
         li.appendChild(paragraph);
         li.appendChild(button);
 
+        li.addEventListener("click", () => {
+            estadoInicial = selecionarTarefa(estadoInicial, tarefa);
+            atualizarUI();
+        });
+
+        // Adicionar evento de clique para editar uma tarefa
+        editIcon.onclick = (evento) => {
+            evento.stopPropagation();
+            estadoInicial = editarTarefa(estadoInicial, tarefa);
+            atualizarUI();
+        }
+
         ulTarefas.appendChild(li);
     });
 }
+
+atualizarUI();
