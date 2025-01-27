@@ -3,7 +3,7 @@ import { GrupoTransacao } from "./GrupoTransacao.js";
 import { TipoTransacao } from "./TipoTransacao.js";
 import { Transacao } from "./Transacao.js";
 
-class Conta {
+export default class Conta {
     protected nome: string;
     protected saldo: number;
     private transacoes: Transacao[];
@@ -93,6 +93,3 @@ class Conta {
         console.log(this.getGruposTransacoes());
     }
 }
-
-let conta = new Conta("Felipe");
-export default conta;

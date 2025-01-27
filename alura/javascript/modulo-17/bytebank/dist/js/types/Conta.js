@@ -1,6 +1,6 @@
 import Armazenador from "./Armazenador.js";
 import { TipoTransacao } from "./TipoTransacao.js";
-class Conta {
+export default class Conta {
     nome;
     saldo;
     transacoes;
@@ -76,5 +76,3 @@ class Conta {
         console.log(this.getGruposTransacoes());
     }
 }
-let conta = new Conta("Felipe");
-export default conta;
