@@ -1,16 +1,17 @@
+import Armazenador from "./Armazenador.js";
 import { GrupoTransacao } from "./GrupoTransacao.js";
-import { TipoTransacao } from "./TipoTransacao";
+import { TipoTransacao } from "./TipoTransacao.js";
 import { Transacao } from "./Transacao.js";
 
-export default class Conta {
-    nome: string;
-    private saldo: number;
+class Conta {
+    protected nome: string;
+    protected saldo: number;
     private transacoes: Transacao[];
 
     constructor(nome: string) {
         this.nome = nome;
-        this.saldo = JSON.parse(localStorage.getItem("saldo")) || 0;
-        this.transacoes = JSON.parse(localStorage.getItem("transacoes"), (key: string, value: string) => {
+        this.saldo = Armazenador.obter("saldo") || 0;
+        this.transacoes = Armazenador.obter("transacoes", (key: string, value: any) => {
             if (key === "data") {
                 return new Date(value);
             }
@@ -18,15 +19,19 @@ export default class Conta {
         }) || [];
     }
     
-    getSaldo(): number {
+    public getSaldo(): number {
         return this.saldo;
     }
 
-    getDataAcesso(): Date {
+    public getTitular(): string {
+        return this.nome;
+    }
+
+    public getDataAcesso(): Date {
         return new Date();
     }
 
-    getGruposTransacoes(): GrupoTransacao[] {
+    public getGruposTransacoes(): GrupoTransacao[] {
         const gruposTransacoes: GrupoTransacao[] = [];
         const listaTransacoes: Transacao[] = structuredClone(this.transacoes);
         const transacoesOrdenadas: Transacao[] = listaTransacoes.sort((t1, t2) => t2.data.getTime() - t1.data.getTime());
@@ -51,7 +56,7 @@ export default class Conta {
         return gruposTransacoes;
     }
 
-    debitar(valor: number): void {
+    protected debitar(valor: number): void {
         if (valor <= 0) {
             throw new Error("O valor a ser debitado deve ser maior que 0!");
         }
@@ -62,7 +67,7 @@ export default class Conta {
         this.saldo -= valor;
     }
     
-    depositar(valor: number): void {
+    protected depositar(valor: number): void {
         if (valor <= 0) {
             throw new Error("O valor a ser debitado deve ser maior que 0!");
         }
@@ -70,7 +75,7 @@ export default class Conta {
     }
     
 
-    registrarTransacao(novaTransacao: Transacao): void {
+    public registrarTransacao(novaTransacao: Transacao): void {
         if (novaTransacao.tipoTransacao === TipoTransacao.DEPOSITO) {
             this.depositar(novaTransacao.valor);
         } else if (novaTransacao.tipoTransacao === TipoTransacao.PAGAMENTO_BOLETO || novaTransacao.tipoTransacao === TipoTransacao.TRANSFERENCIA) {
@@ -82,9 +87,12 @@ export default class Conta {
 
         this.transacoes.push(novaTransacao);
 
-        localStorage.setItem("transacoes", JSON.stringify(this.transacoes));
-        localStorage.setItem("saldo", JSON.stringify(this.saldo));
+        Armazenador.salvar("transacoes", this.transacoes);
+        Armazenador.salvar("saldo", this.saldo);
 
         console.log(this.getGruposTransacoes());
     }
 }
+
+let conta = new Conta("Felipe");
+export default conta;
