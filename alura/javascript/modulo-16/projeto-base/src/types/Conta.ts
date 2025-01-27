@@ -1,0 +1,27 @@
+import { TipoTransacao } from "./TipoTransacao.js";
+import { Transacao } from "./Transacao.js";
+
+let saldo: number = 3000;
+
+const Conta = {
+    getSaldo(): number {
+        return saldo; 
+    },
+
+    getDataAcesso(): Date {
+        return new Date();
+    },
+
+    registrarTransacao(novaTransacao: Transacao): void {
+        if (novaTransacao.tipoTransacao === TipoTransacao.DEPOSITO) {
+            saldo += novaTransacao.valor;
+        } else if (novaTransacao.tipoTransacao === TipoTransacao.PAGAMENTO_BOLETO || novaTransacao.tipoTransacao === TipoTransacao.TRANSFERENCIA) {
+            saldo -= novaTransacao.valor;
+        } else {
+            alert("Transação inválida!");
+            return;
+        }
+    }
+}
+
+export default Conta;
