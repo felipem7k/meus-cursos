@@ -10,8 +10,8 @@ class Conta {
 
     constructor(nome: string) {
         this.nome = nome;
-        this.saldo = Armazenador.obter("saldo") || 0;
-        this.transacoes = Armazenador.obter("transacoes", (key: string, value: any) => {
+        this.saldo = Armazenador.obter<number>("saldo") || 0;
+        this.transacoes = Armazenador.obter<Transacao[]>("transacoes", (key: string, value: any) => {
             if (key === "data") {
                 return new Date(value);
             }
