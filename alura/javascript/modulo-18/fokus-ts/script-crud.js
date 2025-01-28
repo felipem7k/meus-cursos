@@ -122,7 +122,7 @@ function atualizarUI() {
         const button = document.createElement('button');
         button.classList.add('app_button-edit');
         const editIcon = document.createElement('img');
-        editIcon.setAttribute('src', '/imagens/edit.png');
+        editIcon.setAttribute('src', './imagens/edit.png');
         button.appendChild(editIcon);
         if (tarefa.concluida) {
             button.setAttribute('disabled', "true");
@@ -147,4 +147,10 @@ function atualizarUI() {
         ulTarefas.appendChild(li);
     });
 }
+document.addEventListener("TarefaFinalizada", () => {
+    if (estadoInicial.tarefaSelecionada) {
+        estadoInicial.tarefaSelecionada.concluida = true;
+        atualizarUI();
+    }
+});
 atualizarUI();

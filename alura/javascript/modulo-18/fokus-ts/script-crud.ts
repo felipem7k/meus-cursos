@@ -146,7 +146,7 @@ function atualizarUI() {
         button.classList.add('app_button-edit');
 
         const editIcon = document.createElement('img');
-        editIcon.setAttribute('src', '/imagens/edit.png');
+        editIcon.setAttribute('src', './imagens/edit.png');
 
         button.appendChild(editIcon);
 
@@ -178,5 +178,12 @@ function atualizarUI() {
         ulTarefas.appendChild(li);
     });
 }
+
+document.addEventListener("TarefaFinalizada", () => {
+    if (estadoInicial.tarefaSelecionada) {
+        estadoInicial.tarefaSelecionada.concluida = true;
+        atualizarUI();
+    }
+});
 
 atualizarUI();
