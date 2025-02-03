@@ -14,4 +14,12 @@ export default class Negociacao {
     get volume(): number {
         return this.quantidade * this.valor;
     }
+
+    public static criaDe(data: string, quantidade: string, valor: string): Negociacao {
+        return new Negociacao(
+            new Date(data.replace(/-/g, ",")),
+            parseInt(quantidade),
+            parseFloat(valor)
+        )
+    }
 }
