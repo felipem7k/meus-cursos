@@ -5,7 +5,7 @@ export default abstract class View<T> {
         seletor: string, 
         private escapar: boolean = false
     ) {
-        this.elemento = document.querySelector(seletor);
+        this.elemento = document.querySelector(seletor) as HTMLElement;
     }
 
     protected abstract template(modelo: T): string;

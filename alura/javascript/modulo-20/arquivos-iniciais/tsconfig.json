@@ -3,7 +3,9 @@
         "target": "ESNext",
         "outDir": "./dist/js",
         "noEmitOnError": true,
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "removeComments": true,
+        "strictNullChecks": true
     },
     "include": [
         "app/**/*"
