@@ -15,7 +15,7 @@ export default class NegociacaoController {
     inputQuantidade;
     inputValor;
     negociacoes = new Negociacoes();
-    negociacoesView = new NegociacoesView("#negociacoesView", true);
+    negociacoesView = new NegociacoesView("#negociacoesView");
     mensagemView = new MensagemView("#mensagemView");
     constructor() {
         this.inputData = document.querySelector("#data");
