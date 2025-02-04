@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "outDir": "./app/dist/js",
+        "noEmitOnError": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "experimentalDecorators": true,
+        "strictNullChecks": true
+    },
+    "include": [
+        "./app/src/**/*"
+    ]
+}
