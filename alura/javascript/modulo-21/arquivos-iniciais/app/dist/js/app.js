@@ -5,3 +5,7 @@ form.addEventListener("submit", event => {
     event.preventDefault();
     controller.adiciona();
 });
+const botaoImporta = document.querySelector("#botao-importa");
+botaoImporta.addEventListener("click", () => {
+    controller.importaDados();
+});
