@@ -5,6 +5,7 @@ import { DiasDaSemana } from "../enums/dias-da-semana.js";
 import Negociacao from "../models/negociacao.js";
 import Negociacoes from "../models/negociacoes.js";
 import NegociacoesService from "../services/negociacoes-service.js";
+import { imprimir } from "../utils/imprimir.js";
 import MensagemView from "../views/mensagem-view.js";
 import NegociacoesView from "../views/negociacoes-view.js";
 
@@ -39,6 +40,7 @@ export default class NegociacaoController {
         }
 
         this.negociacoes.adiciona(negociacao);
+        imprimir(negociacao, this.negociacoes);
         this.atualizaView();
         this.limparFormulario();
     }
@@ -46,6 +48,12 @@ export default class NegociacaoController {
     public importaDados(): void {
         this.service
         .obterNegociacoes()
+        .then((negociacoesDeHoje: Negociacao[]): Negociacao[] => {
+            return negociacoesDeHoje.filter((negociacaoAtual: Negociacao): boolean => 
+                !this.negociacoes.lista().some(negociacao => 
+                    negociacao.ehIgual(negociacaoAtual)
+                ));
+        })
         .then((negociacoesDeHoje: Negociacao[]) => {
             negociacoesDeHoje.forEach((negociacao: Negociacao) => {
                 this.negociacoes.adiciona(negociacao);

@@ -9,3 +9,4 @@ const botaoImporta = document.querySelector("#botao-importa");
 botaoImporta.addEventListener("click", () => {
     controller.importaDados();
 });
+//# sourceMappingURL=app.js.map
