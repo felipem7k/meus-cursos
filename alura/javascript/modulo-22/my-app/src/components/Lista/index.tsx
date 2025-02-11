@@ -1,7 +1,7 @@
-import React from "react";
+import Item from "./Item";
 import styles from "./Lista.module.scss";
 
-export default function Lista(): React.ReactElement {
+export default function Lista() {
     const tarefas = [
         {
             tarefa: "React",
@@ -21,14 +21,10 @@ export default function Lista(): React.ReactElement {
             <h2>Estudos do dia</h2>
             <ul>
                 {tarefas.map((tarefa, index) => (
-                    <li className={styles.item} key={index}>
-                        <h3>
-                            {tarefa.tarefa}
-                        </h3>
-                        <span>
-                            {tarefa.tempo}
-                        </span>
-                    </li>
+                    <Item
+                        key={index}
+                        {...tarefa}
+                    />
                 )
                 )}
             </ul>
