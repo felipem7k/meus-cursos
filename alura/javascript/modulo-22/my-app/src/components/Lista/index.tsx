@@ -17,6 +17,7 @@ export default function Lista(
                 {tarefas.map((tarefa) => (
                     <Item
                         {...tarefa}
+                        key={tarefa.id}
                         selecionaTarefa={selecionaTarefa}
                     />
                 )
