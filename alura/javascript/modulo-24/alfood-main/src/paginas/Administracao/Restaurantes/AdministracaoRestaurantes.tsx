@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import IRestaurante from "../../../interfaces/IRestaurante";
-import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import http from "../../../http";
 
 export default function AdministracaoRestaurantes() {
@@ -39,21 +39,21 @@ export default function AdministracaoRestaurantes() {
                 </TableHead>
                 <TableBody>
                     {restaurantes.map(restaurante => (
-                    <TableRow>
-                        <TableCell key={restaurante.id}>
-                            {restaurante.nome}
-                        </TableCell>
-                        <TableCell key={restaurante.id}>
-                            [<Link to={`/admin/restaurantes/${restaurante.id}`}>
-                                 editar 
-                            </Link>]
-                        </TableCell>
-                        <TableCell key={restaurante.id}>
-                            <Button variant="outlined" color="error" onClick={() => excluir(restaurante)}>
-                                Excluir
-                            </Button>
-                        </TableCell>
-                    </TableRow>
+                        <TableRow>
+                            <TableCell key={restaurante.id}>
+                                {restaurante.nome}
+                            </TableCell>
+                            <TableCell key={restaurante.id}>
+                                [<Link component={RouterLink} to={`/admin/restaurantes/${restaurante.id}`}>
+                                    editar
+                                </Link>]
+                            </TableCell>
+                            <TableCell key={restaurante.id}>
+                                <Button variant="outlined" color="error" onClick={() => excluir(restaurante)}>
+                                    Excluir
+                                </Button>
+                            </TableCell>
+                        </TableRow>
                     ))}
                 </TableBody>
             </Table>
