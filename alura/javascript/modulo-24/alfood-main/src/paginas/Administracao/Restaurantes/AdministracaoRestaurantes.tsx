@@ -17,7 +17,7 @@ export default function AdministracaoRestaurantes() {
         http.delete(`restaurantes/${restaurante.id}/`)
             .then(() => {
                 const listaRestaurantes = restaurantes.filter(rest => rest.id !== restaurante.id);
-                setRestaurantes(listaRestaurantes);
+                setRestaurantes([...listaRestaurantes]);
             });
     }
 
