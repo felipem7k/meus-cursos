@@ -2,10 +2,11 @@
 import React from 'react'
 import style from './Calendario.module.scss';
 import ptBR from './localizacao/ptBR.json'
-import Kalend, { CalendarView } from 'kalend'
+import Kalend, { CalendarEvent, CalendarView, OnEventDragFinish } from 'kalend'
 import 'kalend/dist/styles/index.css';
 import { useRecoilValue } from 'recoil';
 import { listaDeEventosState } from '../../state/atom';
+import useAtualizarEvento from '../../state/hooks/useAtualizarEvento';
 
 interface IKalendEvento {
   id?: number
@@ -34,6 +35,25 @@ const Calendario: React.FC = () => {
       color: 'blue'
     })
   })
+
+  const atualizarEvento = useAtualizarEvento();
+
+  const onEventDragFinish: OnEventDragFinish = (
+    eventoAnterior: CalendarEvent,
+    eventoAtualizado: CalendarEvent
+  ) => {
+    const evento = eventos.find(evento => evento.descricao === eventoAnterior.summary);
+    if (evento) {
+      const novoEvento = {
+        ...evento
+      };
+      novoEvento.inicio = new Date(eventoAtualizado.startAt);
+      novoEvento.fim = new Date(eventoAtualizado.endAt);
+
+      atualizarEvento(novoEvento);
+    }
+  };
+
   return (
     <div className={style.Container}>
       <Kalend
@@ -46,6 +66,7 @@ const Calendario: React.FC = () => {
         calendarIDsHidden={['work']}
         language={'customLanguage'}
         customLanguage={ptBR}
+        onEventDragFinish={onEventDragFinish}
       />
     </div>
   );

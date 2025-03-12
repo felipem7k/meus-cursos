@@ -21,15 +21,14 @@ const Formulario: React.FC = () => {
 
   const submeterForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const evento = {
+
+    setListaDeEventos(listaAntiga => [...listaAntiga, {
       id: obterId(),
       descricao,
       inicio: montarData(dataInicio, horaInicio),
       fim: montarData(dataFim, horaFim),
       completo: false
-    }
-
-    setListaDeEventos(listaAntiga => [...listaAntiga, evento]);
+    }]);
 
     setDescricao('')
     setDataInicio('')
