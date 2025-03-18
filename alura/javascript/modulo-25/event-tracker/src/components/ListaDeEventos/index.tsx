@@ -3,9 +3,6 @@ import Evento from '../Evento';
 import Filtro from '../Filtro';
 import style from './ListaDeEventos.module.scss';
 import useListaDeEventos from '../../state/hooks/useListaDeEventos';
-import { useRecoilValue } from 'recoil';
-import { IFiltroDeEventos } from '../../interfaces/IFiltroDeEvento';
-import { filtroDeEventos } from '../../state/atom';
 
 const ListaDeEventos: React.FC = () => {
 
