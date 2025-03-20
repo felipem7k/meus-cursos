@@ -1,25 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Formulario from './componentes/Formulario';
+import styled, { createGlobalStyle } from 'styled-components';
+import Cabecalho from './componentes/Cabecalho';
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    background: #4B69FD;
+    border: 2px solid black;
+    font-family: 'Poppins', sans-serif;
+  }
+`;
+
+const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle></GlobalStyle>
+      <Root>
+        <Cabecalho></Cabecalho>
+        <Formulario />
+      </Root>
+    </>
   );
 }
 
