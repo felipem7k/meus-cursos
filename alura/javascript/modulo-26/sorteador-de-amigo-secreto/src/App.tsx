@@ -1,32 +1,20 @@
 import React from 'react';
-import './App.css';
 import Formulario from './componentes/Formulario';
-import styled, { createGlobalStyle } from 'styled-components';
-import Cabecalho from './componentes/Cabecalho';
-
-const GlobalStyle = createGlobalStyle`
-  html {
-    background: #4B69FD;
-    border: 2px solid black;
-    font-family: 'Poppins', sans-serif;
-  }
-`;
-
-const Root = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
+import PaginaBase from './componentes/PaginaBase';
 
 function App() {
   return (
-    <>
-      <GlobalStyle></GlobalStyle>
-      <Root>
-        <Cabecalho></Cabecalho>
-        <Formulario />
-      </Root>
-    </>
+    <BrowserRouter>
+      <RecoilRoot>
+        <Routes>
+          <Route path='/' element={<PaginaBase />}>
+            <Route index element={<Formulario />}></Route>
+          </Route>
+        </Routes>
+      </RecoilRoot>
+    </BrowserRouter>
   );
 }
 
