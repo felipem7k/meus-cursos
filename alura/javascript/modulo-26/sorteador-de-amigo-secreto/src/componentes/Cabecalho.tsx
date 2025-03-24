@@ -29,6 +29,7 @@ const Personagem = styled.img`
 
     @media screen and (max-width: 800px) {
         display: flex;
+        width: 70vw;
         padding-top: 60px;
         align-items: center;
     }

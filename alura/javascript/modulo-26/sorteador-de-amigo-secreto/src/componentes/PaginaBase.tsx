@@ -7,7 +7,6 @@ import Card from "./Card";
 const GlobalStyle = createGlobalStyle`
   html {
     background: #4B69FD;
-    border: 2px solid black;
     font-family: 'Poppins', sans-serif;
   }
 `;
