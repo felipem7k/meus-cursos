@@ -2,6 +2,7 @@ import React from "react";
 import { useListaDeParticipantes } from "../state/hooks/useListaDeParticipantes";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useSorteador } from "../state/hooks/useSorteador";
 
 const Footer = styled.footer`
     width: 90%;
@@ -26,10 +27,15 @@ const Button = styled.button`
     box-shadow: 0px 2px 0px 1px #000000;
     color: white;
 
+    &:disabled {
+        background-color: #808080;
+        cursor: not-allowed;
+    }
+
     @media screen and (max-width: 800px) {
         padding: 1rem 1rem;
     }
-`
+`;
 
 const Img = styled.img`
     width: 237px;
@@ -43,7 +49,10 @@ export default function Rodape({children}: {children?: never[]}) {
     const participantes = useListaDeParticipantes();
     const navegarPara = useNavigate();
 
+    const sortear = useSorteador();
+
     function iniciar() {
+        sortear();
         navegarPara('/sorteio');
     }
 
