@@ -27,6 +27,10 @@ const Button = styled.button`
     box-shadow: 0px 2px 0px 1px #000000;
     color: white;
 
+    &:hover {
+        background-color: #4B69FD;
+    }
+
     &:disabled {
         background-color: #808080;
         cursor: not-allowed;
