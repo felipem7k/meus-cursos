@@ -15,7 +15,6 @@ export default function Cardapio() {
     <section className={styles.cardapio}>
       <h1 onClick={() => {
         teste = 'Hello World';
-        console.log(teste);
       }}>{teste}</h1>
       <h3 className={stylesTema.titulo}>Cardápio</h3>
       <Buscador busca={busca} setBusca={setBusca} />
