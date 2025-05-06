@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SeriesCreated as EventsSeriesCreated;
 use App\Http\Requests\SeriesFormRequest;
 use App\Mail\SeriesCreated;
 use App\Models\Series;
@@ -42,17 +43,13 @@ class SeriesController extends Controller implements HasMiddleware
     public function store(SeriesFormRequest $request)
     {
         $serie = $this->seriesRepository->add($request);
-        $userList = User::all();
-        foreach ($userList as $index => $user) {
-            $email = new SeriesCreated(
-                $serie->nome,
-                $serie->id,
-                $request->seasonsQty,
-                $request->seasonsEps,
-            );
-            $when = now()->addSeconds($index * 5);
-            Mail::to($user)->later($when, $email);
-        }
+        
+        EventsSeriesCreated::dispatch(
+            $serie->nome,
+            $serie->id,
+            $request->seasonsQty,
+            $request->seasonsEps
+        );
 
         return to_route('series.index')->with('mensagem.sucesso', "Série '$serie->nome' adicionada com sucesso!");
     }
