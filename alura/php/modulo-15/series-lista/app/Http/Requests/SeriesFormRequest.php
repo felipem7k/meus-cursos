@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SeriesFormRequest extends FormRequest
 {
+    public string|null $coverPath;
     /**
      * Determine if the user is authorized to make this request.
      */

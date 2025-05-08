@@ -1,4 +1,7 @@
 <x-layout title="{!! $series->nome !!}: temporadas">
+    <div class="d-flex justify-content-center">
+        <img src="{{ asset('storage/'. $series->cover) }}" alt="Capa da série" class="img-fluid" style="height: 400px">
+    </div>
     <ul class="list-group">
         @foreach ($seasons as $season)
             <li class="list-group-item d-flex justify-content-between align-items-center">

@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Events\SeriesCreated as EventsSeriesCreated;
+use App\Events\SeriesDeleted as EventsSeriesDeleted;
 use App\Http\Requests\SeriesFormRequest;
-use App\Mail\SeriesCreated;
 use App\Models\Series;
-use App\Models\User;
 use App\Repositories\SeriesRepository;
-use DateTime;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\Support\Facades\Mail;
+
 
 class SeriesController extends Controller implements HasMiddleware
 {
@@ -42,6 +40,13 @@ class SeriesController extends Controller implements HasMiddleware
 
     public function store(SeriesFormRequest $request)
     {
+        $request->validate([
+            'cover' => 'mimes:jpg,bmp,png,gif'
+        ]);
+
+        $coverPath = $request->file('cover')->store('series_cover', 'public');
+        $request->coverPath = $coverPath;
+
         $serie = $this->seriesRepository->add($request);
         
         EventsSeriesCreated::dispatch(
@@ -56,6 +61,10 @@ class SeriesController extends Controller implements HasMiddleware
 
     public function destroy(Series $series)
     {
+        EventsSeriesDeleted::dispatch(
+            $series->cover
+        );
+
         $series->delete();
 
         return to_route('series.index')->with('mensagem.sucesso', "Série '$series->nome' removida com sucesso!");
