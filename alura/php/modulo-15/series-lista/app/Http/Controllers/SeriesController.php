@@ -44,7 +44,7 @@ class SeriesController extends Controller implements HasMiddleware
             'cover' => 'mimes:jpg,bmp,png,gif'
         ]);
 
-        $coverPath = $request->file('cover')->store('series_cover', 'public');
+        $coverPath = $request->hasFile('cover') ?  $request->file('cover')->store('series_cover', 'public') : null;
         $request->coverPath = $coverPath;
 
         $serie = $this->seriesRepository->add($request);
