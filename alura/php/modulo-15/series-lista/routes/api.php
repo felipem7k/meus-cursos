@@ -9,4 +9,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/series', SeriesController::class . '@index')->name('series.index');
+Route::apiResource('/series', SeriesController::class);

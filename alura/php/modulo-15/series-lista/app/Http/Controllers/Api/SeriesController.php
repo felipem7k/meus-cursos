@@ -2,12 +2,59 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\SeriesFormRequest;
+use App\Models\Series;
+use App\Repositories\SeriesRepository;
+
 class SeriesController
 {
+    public function __construct(private SeriesRepository $seriesRepository)
+    {
+    }
+
     public function index()
     {
         return response()->json([
-            'series' => \App\Models\Series::all()
+            'series' => Series::all()
         ]);
+    }
+
+    public function store(SeriesFormRequest $request)
+    {
+        return response()->json([
+            'series' => $this->seriesRepository->add($request)
+        ], 201);
+    }
+
+    public function show(Series $series)
+    {
+        return response()->json([
+            'series' => $series
+        ]);
+    }
+
+    // public function show(int $id) // buscar por id com episódios //
+    // {
+    //     $series = Series::whereId($id)->with('seasons.episodes')->first();
+    //     return response()->json([
+    //         'series' => $series
+    //     ]);
+    // }
+
+    public function update(Series $series, SeriesFormRequest $request)
+    {
+        $series->fill($request->all());
+        $series->save();
+
+        return response()->json([
+            'series' => $series
+        ]);
+    }
+
+    public function destroy(int $id)
+    {
+        Series::destroy($id);   
+
+        return response()->noContent();
     }
 }
