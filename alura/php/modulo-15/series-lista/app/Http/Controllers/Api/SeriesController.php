@@ -26,8 +26,14 @@ class SeriesController
         ], 201);
     }
 
-    public function show(Series $series)
+    public function show(int $id)
     {
+        $series = Series::with(['seasons.episodes'])->find($id);
+        if ($series === null) {
+            return response()->json([
+                'message' => 'Série não encontrada'
+            ], 404);
+        }
         return response()->json([
             'series' => $series
         ]);
