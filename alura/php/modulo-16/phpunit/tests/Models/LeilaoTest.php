@@ -10,6 +10,9 @@ class LeilaoTest extends TestCase
 {
     public function testLeilaoNaoDeveAceitarMaisDe5LancesPorUsuario()
     {
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessage('Usuário não pode dar mais de 5 lances.');
+
         $joao = new Usuario('João');
         $maria = new Usuario('Maria');
 
@@ -32,6 +35,9 @@ class LeilaoTest extends TestCase
     }
     public function testLeilaoNaoDeveReceberLancesRepetidos()
     {
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessage('Usuário não pode dar dois lances seguidos.');
+
         $leilao = new Leilao('Variante');
         $ana = new Usuario('Ana');
         $leilao->recebeLance(new Lance($ana, 1000));

@@ -12,6 +12,14 @@ class Avaliador
     private $maioresLances;
     public function avalia(Leilao $leilao): void
     {
+        if (empty($leilao->getLances())) {
+            throw new \DomainException('Não é possível avaliar um leilão sem lances.');
+        }
+
+        if ($leilao->isFinalizado()) {
+            throw new \DomainException('Não é possível avaliar um leilão finalizado.');
+        }
+
         foreach ($leilao->getLances() as $lance) {
             if ($lance->getValor() > $this->getMaiorValor()) {
                 $this->maiorValor = $lance->getValor();

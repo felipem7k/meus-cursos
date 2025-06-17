@@ -57,6 +57,28 @@ final class AvaliadorTest extends TestCase
         static::assertEquals(1500, $maiores[2]->getValor());
     }
 
+    public function testAvaliadorNaoDeveAceitarLeilaoSemLances()
+    {
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessage('Não é possível avaliar um leilão sem lances.');
+
+        $leilao = new Leilao("Carro antigo");
+        $this->leiloeiro->avalia($leilao);
+    }
+
+    public function testLeilaoFinalizadoNaoPodeSerAvaliado()
+    {
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessage('Não é possível avaliar um leilão finalizado.');
+
+        $leilao = new Leilao("Carro antigo");
+        $leilao->recebeLance(new Lance(new Usuario("João"), 1000));
+        $leilao->recebeLance(new Lance(new Usuario("Maria"), 2000));
+        $leilao->finaliza();
+
+        $this->leiloeiro->avalia($leilao);
+    }
+
     // DADOS 
     public static function leilaoEmOrdemCrescente()
     {
