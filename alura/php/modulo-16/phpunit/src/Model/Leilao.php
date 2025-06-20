@@ -8,32 +8,41 @@ class Leilao
     private $lances;
     /** @var string */
     private $descricao;
+    /** @var bool */
+    private $finalizado;
+    /** @var \DateTimeInterface  */
+    private $dataInicio;
+    /** @var int */
+    private $id;
 
-    private bool $finalizado;
-
-    public function __construct(string $descricao)
+    public function __construct(string $descricao, \DateTimeImmutable $dataInicio = null, int $id = null)
     {
         $this->descricao = $descricao;
-        $this->lances = [];
         $this->finalizado = false;
+        $this->lances = [];
+        $this->dataInicio = $dataInicio ?? new \DateTimeImmutable();
+        $this->id = $id;
     }
 
     public function recebeLance(Lance $lance)
     {
-        if ($this->ehDoUltimoUsuario($lance->getUsuario())) {
-            throw new \DomainException(
-                'Usuário não pode dar dois lances seguidos.'
-            );
+        if ($this->finalizado) {
+            throw new \DomainException('Este leilão já está finalizado');
         }
 
-        $totalLancesDoUsuario = $this->quantidadeLancesPorUsuario($lance->getUsuario());
-        if ($totalLancesDoUsuario >= 5) {
-            throw new \DomainException(
-                'Usuário não pode dar mais de 5 lances.'
-            );
+        $ultimoLance = empty($this->lances)
+            ? null
+            : $this->lances[count($this->lances) - 1];
+        if (!empty($this->lances) && $ultimoLance->getUsuario() == $lance->getUsuario()) {
+            throw new \DomainException('Usuário já deu o último lance');
         }
 
         $this->lances[] = $lance;
+    }
+
+    public function finaliza()
+    {
+        $this->finalizado = true;
     }
 
     /**
@@ -44,29 +53,31 @@ class Leilao
         return $this->lances;
     }
 
-    public function ehDoUltimoUsuario(Usuario $usuario): bool
+    public function recuperarDescricao(): string
     {
-        if (empty($this->lances)) {
-            return false;
-        }
-        $ultimoLance = $this->lances[count($this->lances) - 1];
-        return $ultimoLance->getUsuario() === $usuario;
+        return $this->descricao;
     }
 
-    public function finaliza()
-    {
-        $this->finalizado = true;
-    }
-
-    public function isFinalizado(): bool
+    public function estaFinalizado(): bool
     {
         return $this->finalizado;
     }
 
-    private function quantidadeLancesPorUsuario(Usuario $usuario): int
+    public function recuperarDataInicio(): \DateTimeInterface
     {
-        return array_reduce($this->lances, function (int $total, Lance $lanceAtual) use ($usuario) {
-            return $total + ($lanceAtual->getUsuario() === $usuario ? 1 : 0);
-        }, 0);
+        return $this->dataInicio;
+    }
+
+    public function temMaisDeUmaSemana(): bool
+    {
+        $hoje = new \DateTime();
+        $intervalo = $this->dataInicio->diff($hoje);
+
+        return $intervalo->days > 7;
+    }
+
+    public function recuperarId(): int
+    {
+        return $this->id;
     }
 }

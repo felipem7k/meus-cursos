@@ -8,35 +8,10 @@ use PHPUnit\Framework\TestCase;
 
 class LeilaoTest extends TestCase
 {
-    public function testLeilaoNaoDeveAceitarMaisDe5LancesPorUsuario()
-    {
-        $this->expectException(\DomainException::class);
-        $this->expectExceptionMessage('Usuário não pode dar mais de 5 lances.');
-
-        $joao = new Usuario('João');
-        $maria = new Usuario('Maria');
-
-        $leilao = new Leilao('Carro Antigo');
-        $leilao->recebeLance(new Lance($joao, 1000));
-        $leilao->recebeLance(new Lance($maria, 2000));
-        $leilao->recebeLance(new Lance($joao, 3000));
-        $leilao->recebeLance(new Lance($maria, 4000));
-        $leilao->recebeLance(new Lance($joao, 5000));
-        $leilao->recebeLance(new Lance($maria, 6000));
-        $leilao->recebeLance(new Lance($joao, 7000));
-        $leilao->recebeLance(new Lance($maria, 8000));
-        $leilao->recebeLance(new Lance($joao, 9000));
-        $leilao->recebeLance(new Lance($maria, 10000));
-
-        $leilao->recebeLance(new Lance($joao, 11000));
-
-        static::assertCount(10, $leilao->getLances());
-        static::assertEquals(10000, $leilao->getLances()[array_key_last($leilao->getLances())]->getValor());
-    }
     public function testLeilaoNaoDeveReceberLancesRepetidos()
     {
         $this->expectException(\DomainException::class);
-        $this->expectExceptionMessage('Usuário não pode dar dois lances seguidos.');
+        $this->expectExceptionMessage('Usuário já deu o último lance');
 
         $leilao = new Leilao('Variante');
         $ana = new Usuario('Ana');

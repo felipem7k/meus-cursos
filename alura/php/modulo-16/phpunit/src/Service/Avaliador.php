@@ -16,7 +16,7 @@ class Avaliador
             throw new \DomainException('Não é possível avaliar um leilão sem lances.');
         }
 
-        if ($leilao->isFinalizado()) {
+        if ($leilao->estaFinalizado()) {
             throw new \DomainException('Não é possível avaliar um leilão finalizado.');
         }
 
