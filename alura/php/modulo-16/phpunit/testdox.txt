@@ -17,5 +17,6 @@ Avaliador (Alura\Leilao\Tests\Service\Avaliador)
  [x] Leilao finalizado nao pode ser avaliado
 
 Encerrador (Alura\Leilao\Tests\Service\Encerrador)
- [ ] Leiloes com mais de uma semana devem ser encerrados
+ [x] Leiloes com mais de uma semana devem ser encerrados
+ [x] Processo de encerramento deve continuar mesmo ocorrendo erro
 
