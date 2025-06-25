@@ -1,3 +1,6 @@
+Leilao Dao (Alura\Leilao\Tests\Integration\Dao\LeilaoDao)
+ [ ] Insersao e busca devem funcionar
+
 Leilao (Alura\Leilao\Tests\Models\Leilao)
  [x] Leilao nao deve receber lances repetidos
  [x] Leilao deve receber lances with data set "2-lances"
