@@ -7,6 +7,8 @@ use Alura\Leilao\Dao\Leilao as LeilaoDao;
 use PDO;
 use PHPUnit\Framework\TestCase;
 
+use function PHPUnit\Framework\assertCount;
+
 class LeilaoDaoTest extends TestCase
 {
     private static $pdo;
@@ -60,7 +62,20 @@ class LeilaoDaoTest extends TestCase
         self::assertContainsOnlyInstancesOf(Leilao::class, $leiloes);
         self::assertSame("Fiat 147 0km", $leiloes[0]->recuperarDescricao());
     }
+    public function testAoAtualizarLeilaoStatusDeveSerAlterado()
+    {
+        $leilao = new Leilao("Brasilia Amarela");
+        $leilaoDao = new LeilaoDao(self::$pdo);
+        $leilao = $leilaoDao->salva($leilao);
+        $leilao->finaliza();
 
+        $leilaoDao->atualiza($leilao);
+
+        $leiloes = $leilaoDao->recuperarFinalizados();
+        self::assertCount(1, $leiloes);
+        self::assertSame("Brasilia Amarela", $leiloes[0]->recuperarDescricao());
+        self::assertTrue($leiloes[0]->estaFinalizado());
+    }
     protected function tearDown(): void
     {
         self::$pdo->rollBack();
