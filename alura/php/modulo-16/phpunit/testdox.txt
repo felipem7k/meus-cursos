@@ -1,5 +1,6 @@
 Leilao Dao (Alura\Leilao\Tests\Integration\Dao\LeilaoDao)
- [x] Insersao e busca devem funcionar
+ [x] Busca leiloes nao finalizados with data set #0
+ [x] Busca leiloes finalizados with data set #0
 
 Leilao (Alura\Leilao\Tests\Models\Leilao)
  [x] Leilao nao deve receber lances repetidos
