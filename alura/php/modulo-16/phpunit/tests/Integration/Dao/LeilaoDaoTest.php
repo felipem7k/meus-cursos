@@ -7,8 +7,6 @@ use Alura\Leilao\Dao\Leilao as LeilaoDao;
 use PDO;
 use PHPUnit\Framework\TestCase;
 
-use function PHPUnit\Framework\assertCount;
-
 class LeilaoDaoTest extends TestCase
 {
     private static $pdo;
