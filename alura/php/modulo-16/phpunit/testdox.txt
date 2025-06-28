@@ -1,21 +1,8 @@
-Leilao (Alura\Leilao\Tests\Models\Leilao)
- [x] Leilao nao deve receber lances repetidos
- [x] Leilao deve receber lances with data set "2-lances"
- [x] Leilao deve receber lances with data set "1-lance"
+Leilao Dao (Alura\Leilao\Tests\Integration\Dao\LeilaoDao)
+ [x] Busca leiloes nao finalizados with data set #0
+ [x] Busca leiloes finalizados with data set #0
+ [x] Ao atualizar leilao status deve ser alterado
 
-Avaliador (Alura\Leilao\Tests\Service\Avaliador)
- [x] Avaliador deve econtrar o maior valor de lances with data set #0
- [x] Avaliador deve econtrar o maior valor de lances with data set #1
- [x] Avaliador deve econtrar o maior valor de lances with data set #2
- [x] Avaliador deve econtrar o menor valor de lances with data set #0
- [x] Avaliador deve econtrar o menor valor de lances with data set #1
- [x] Avaliador deve econtrar o menor valor de lances with data set #2
- [x] Avaliador deve buscar 3 maiores valores with data set #0
- [x] Avaliador deve buscar 3 maiores valores with data set #1
- [x] Avaliador deve buscar 3 maiores valores with data set #2
- [x] Avaliador nao deve aceitar leilao sem lances
- [x] Leilao finalizado nao pode ser avaliado
-
-Encerrador (Alura\Leilao\Tests\Service\Encerrador)
- [x] Leiloes com mais de uma semana devem ser encerrados
+Rest (Alura\Leilao\Tests\Integration\Web\Rest)
+ [x] Api rest deve retornar array de leiloes
 
