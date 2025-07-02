@@ -12,7 +12,9 @@
     "nyholm/psr7-server": "^1.0",
     "doctrine/orm": "^2.14",
     "php-di/php-di": "^6.0",
-    "symfony/cache": "^6.2"
+    "symfony/cache": "^6.2",
+    "doctrine/annotations": "1.14",
+    "doctrine/lexer": "2.1"
   },
   "require-dev": {
     "behat/behat": "^3.22"
