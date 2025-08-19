@@ -4,7 +4,7 @@
 namespace CViniciusSDias\GoogleCrawler;
 
 use CViniciusSDias\GoogleCrawler\Exception\InvalidResultException;
-use CViniciusSDias\GoogleCrawler\Proxy\GoogleProxyInterface;
+use CViniciusSDias\GoogleCrawler\Proxy\UrlParser\GoogleUrlParser;
 use DOMElement;
 use j45l\maybe\Maybe\Maybe;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
@@ -12,7 +12,7 @@ use Symfony\Component\DomCrawler\Link;
 
 class DomElementParser
 {
-    public function __construct(private GoogleProxyInterface $proxy)
+    public function __construct(private GoogleUrlParser $proxy)
     {
         // Constructor can be empty or used for dependency injection if needed
     }

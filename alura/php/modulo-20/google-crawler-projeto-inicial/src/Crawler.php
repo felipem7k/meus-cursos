@@ -2,13 +2,11 @@
 namespace CViniciusSDias\GoogleCrawler;
 
 use CViniciusSDias\GoogleCrawler\Exception\InvalidGoogleHtmlException;
-use CViniciusSDias\GoogleCrawler\Exception\InvalidResultException;
-use CViniciusSDias\GoogleCrawler\Proxy\{
-    GoogleProxyInterface, NoProxy
-};
+use CViniciusSDias\GoogleCrawler\Proxy\GooogleProxyAbstractFactory;
+use CViniciusSDias\GoogleCrawler\Proxy\HttpClient\GoogleHttpClient;
+use CViniciusSDias\GoogleCrawler\Proxy\NoProxyAbstractFactory;
+use CViniciusSDias\GoogleCrawler\Proxy\UrlParser\GoogleUrlParser;
 use Symfony\Component\DomCrawler\Crawler as DomCrawler;
-use Symfony\Component\DomCrawler\Link;
-use DOMElement;
 
 /**
  * Google Crawler
@@ -18,13 +16,17 @@ use DOMElement;
  */
 class Crawler
 {
-    /** @var GoogleProxyInterface $proxy */
-    protected $proxy;
-
+    private GoogleHttpClient $httpClient;
+    private GoogleUrlParser $parser;
     public function __construct(
-        GoogleProxyInterface $proxy = null,
+        private GooogleProxyAbstractFactory $factory
     ) {
-        $this->proxy = $proxy ?? new NoProxy();
+        if ($factory === null) {
+            $factory = new NoProxyAbstractFactory();
+        }
+
+        $this->httpClient = $this->factory->createGoogleHttpClient();
+        $this->parser = $this->factory->createGoogleUrlParser();
     }
 
     /**
@@ -49,14 +51,14 @@ class Crawler
             $googleUrl .= "&gl={$countryCode}";
         }
 
-        $response = $this->proxy->getHttpResponse($googleUrl);
+        $response = $this->httpClient->getHttpResponse($googleUrl);
         $stringResponse = (string) $response->getBody();
         $domCrawler = new DomCrawler($stringResponse);
         $googleResultList = $this->createGoogleResultList($domCrawler);
 
         $resultList = new ResultList($googleResultList->count());
 
-        $domElementParser = new DomElementParser($this->proxy);
+        $domElementParser = new DomElementParser($this->parser);
         foreach ($googleResultList as $googleResultElement) {
             $parsedResultMaybe = $domElementParser->parse($googleResultElement);
             $parsedResultMaybe->getOrElse(function (Result $result) use ($resultList) {
