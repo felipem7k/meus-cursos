@@ -1,0 +1,6 @@
+print("Python é divertido".upper())
+print("Programar é divertido".find("fun"))
+print("Manipulação"[:4])
+print("Python"[::-1])
+print("Aprender python é uma ótima experiencia".lower().count("a"))
+print("Programação é muito divertido"[20:])
