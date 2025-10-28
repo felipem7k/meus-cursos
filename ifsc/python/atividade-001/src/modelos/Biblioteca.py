@@ -1,20 +1,21 @@
 from src.modelos.Livro import Livro
 from src.modelos.Usuario import Usuario
 from src.modelos.Historico import Historico
+from src.repositorios.HistoricoRepositorio import HistoricoRepositorio
 
 class Biblioteca:
     def __init__(self):
         self.__livros: list[Livro] = []
         self.__usuarios: list[Usuario] = []
-        self.__historico_emprestimo: list[Historico] = []
+        self.__historico_repositorio = HistoricoRepositorio()
 
         self.__limite_de_emprestimos = 3
 
     def __registrar_historico(self, usuario: Usuario, descricao: str) -> None:
-        self.__historico_emprestimo.append(Historico(usuario, descricao))
+        self.__historico_repositorio.registrar(Historico(usuario, descricao))
 
     def exibir_historico(self, filtro: map|None = None) -> None:
-        historico_emprestimos = self.__historico_emprestimo
+        historico_emprestimos = self.__historico_repositorio.listar_tudo()
         if filtro and filtro["tipo"] == "nome":
             historico_emprestimos = filter(lambda historico: historico.usuario.nome == filtro["valor"], historico_emprestimos)
 
@@ -87,3 +88,22 @@ class Biblioteca:
         livros_em_emprestimo = len(self.__filtrar_por_emprestimo(True))
         livros_disponieis = len(self.__filtrar_por_emprestimo(False))
         return f"{"*"*8} RELATÓRIO GERAL DA BIBLIOTECA {"*"*8}\nTotal de livros: {len(self.__livros)}\nQuantidade de usuários: {len(self.__usuarios)}\nTotal de livros em empréstimo: {livros_em_emprestimo}\nTotal de livros disponíveis: {livros_disponieis}"
+    
+    def enviar_email(self, usuario: Usuario, descricao: str) -> bool:
+        if not usuario.email:
+            raise Exception(f"{usuario.nome} não possui e-mail.")
+        
+        print(f"{descricao} enviado para {usuario.email}")
+
+    def notificar_atrasos(self) -> str:
+        livros_expirados = self.__filtrar_por_expirado(True)
+
+        for livro in livros_expirados:
+            try:
+                emprestado_para = livro.emprestado_para()
+                if not emprestado_para:
+                    continue
+
+                self.enviar_email(emprestado_para, f"Livro {livro.titulo} está atrasado!")
+            except Exception as e:
+                print(f"Erro ao notificar usuario: {e}")

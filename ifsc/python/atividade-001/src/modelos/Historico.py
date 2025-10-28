@@ -6,10 +6,10 @@ if TYPE_CHECKING:
 from datetime import datetime
 
 class Historico:
-    def __init__(self, usuario: Usuario, descricao: str):
+    def __init__(self, usuario: Usuario, descricao: str, data: datetime|None = datetime.now()):
         self.__descricao = descricao
         self.__usuario = usuario
-        self.__data = datetime.now()
+        self.__data = data
 
     @property
     def usuario(self) -> Usuario:

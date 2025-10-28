@@ -59,3 +59,5 @@ if __name__ == "__main__":
     # }))
 
     print(biblioteca.relatorio_geral())
+
+    biblioteca.notificar_atrasos()

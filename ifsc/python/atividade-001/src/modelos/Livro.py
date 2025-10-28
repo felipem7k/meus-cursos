@@ -60,6 +60,12 @@ class Livro:
         
         self.__emprestimo = None
 
+    def emprestado_para(self) -> Usuario|None:
+        if self.disponivel:
+            return None
+
+        return self.__emprestimo.usuario
+
     def __estado_emprestimo(self):
         if self.disponivel:
             return "disponível"
