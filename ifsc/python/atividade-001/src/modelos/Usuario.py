@@ -1,11 +1,11 @@
-from src.modelos.Livro import Livro
+from src.modelos.ItemBiblioteca import ItemBiblioteca
 
 class Usuario:
     def __init__(self, nome: str) -> None:
         self.__nome = nome
 
         self.__email = ""
-        self.__livros_emprestados: list[Livro] = []
+        self.__itens_emprestados: list[ItemBiblioteca] = []
         self.__limite_emprestimos_max = 3
 
     @property
@@ -29,20 +29,20 @@ class Usuario:
         
         self.__limite_emprestimos_max = quantidade
 
-    def emprestar_livro(self, livro: Livro) -> None:
-        if len(self.__livros_emprestados) >= self.__limite_emprestimos_max:
+    def emprestar_item(self, item: ItemBiblioteca) -> None:
+        if len(self.__itens_emprestados) >= self.__limite_emprestimos_max:
             raise Exception("Limíte de empréstimos atingido!")
 
-        livro.emprestar(self)
-        self.__livros_emprestados.append(livro)
+        item.emprestar(self)
+        self.__itens_emprestados.append(item)
 
-    def devolver_livro(self, livro: Livro) -> None:
-        livro.devolver()
-        self.__livros_emprestados.remove(livro)
+    def devolver_item(self, item: ItemBiblioteca) -> None:
+        item.devolver()
+        self.__itens_emprestados.remove(item)
 
-    def listar_livros(self) -> str:
-        livros_detalhes: list[str] = [livro.detalhes() for livro in self.__livros_emprestados]
-        return f"\n{"-"*8}\nLivros de {self.__nome}: \n{" - ".join(livros_detalhes)}"
+    def listar_itens(self) -> str:
+        itens_detalhes: list[str] = [item.detalhes() for item in self.__itens_emprestados]
+        return f"\n{"-"*8}\nItens de {self.__nome}: \n{" - ".join(itens_detalhes)}"
     
     def detalhes(self) -> str:
-        return f"****DETALHES DE USUÁRIO****\nNome: {self.__nome}\nE-mail: {self.__email if self.__email else "-"}\nQuantidade de livros emprestados: {len(self.__livros_emprestados)}/{self.__limite_emprestimos_max}"
+        return f"****DETALHES DE USUÁRIO****\nNome: {self.__nome}\nE-mail: {self.__email if self.__email else "-"}\nQuantidade de itens emprestados: {len(self.__itens_emprestados)}/{self.__limite_emprestimos_max}"
