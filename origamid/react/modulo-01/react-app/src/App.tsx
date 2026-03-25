@@ -1,10 +1,9 @@
-import './App.css'
+import React from "react";
 
-function App() {
-
+const App: React.FC = () => {
   return (
     <button type="button">Comprar</button>
-  )
-}
+  );
+};
 
-export default App
+export default App;
